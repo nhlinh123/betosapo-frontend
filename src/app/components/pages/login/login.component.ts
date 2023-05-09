@@ -1,15 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../../services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+    form: FormGroup;
+    constructor(private authService: AuthService, private router: Router) {}
 
-  constructor() { }
+    ngOnInit(): void {
+        this.initFormGroup();
+    }
 
-  ngOnInit(): void {
-  }
+    initFormGroup() {
+        this.form = new FormGroup({
+            email: new FormControl(
+                null,
+                Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')
+            ),
+            password: new FormControl(null, [
+                Validators.pattern('^[a-zA-Z0-9]{6,30}$'),
+            ]),
+        });
+    }
 
+    login() {
+        const { email, password } = this.form.getRawValue();
+        this.authService.login(email, password).subscribe((res) => {
+            if (res) {
+                this.router.navigateByUrl('/');
+            }
+        });
+    }
+
+    isFormInValid(controlName: string) {
+        return this.form.invalid && this.form.get(controlName).invalid;
+    }
 }

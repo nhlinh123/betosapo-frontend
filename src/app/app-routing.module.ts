@@ -29,40 +29,40 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { ContactComponent } from './components/pages/contact/contact.component';
 
 const routes: Routes = [
-    {path: '', component: HomeOneComponent},
-    {path: 'home-two', component: HomeTwoComponent},
-    {path: 'home-three', component: HomeThreeComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'job-list', component: JobListComponent},
-    {path: 'favourite-job', component: FavouriteJobComponent},
-    {path: 'job-details', component: JobDetailsComponent},
-    {path: 'post-a-job', component: PostAJobComponent},
-    {path: 'candidate-list', component: CandidateListComponent},
-    {path: 'candidate-details', component: CandidateDetailsComponent},
-    {path: 'single-resume', component: SingleResumeComponent},
-    {path: 'submit-resume', component: SubmitResumeComponent},
-    {path: 'pricing', component: PricingComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'company-list', component: CompanyListComponent},
-    {path: 'company-details', component: CompanyDetailsComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'create-account', component: CreateAccountComponent},
-    {path: 'profile', component: ProfileComponent},
-    {path: 'single-profile', component: SingleProfileComponent},
-    {path: '404', component: ErrorComponent},
-    {path: 'faq', component: FaqComponent},
-    {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
-    {path: 'privacy-policy', component: PrivacyPolicyComponent},
-    {path: 'blog', component: BlogComponent},
-    {path: 'blog-details', component: BlogDetailsComponent},
-    {path: 'contact', component: ContactComponent},
+    { path: '', component: HomeOneComponent },
+    // { path: 'home-two', component: HomeTwoComponent },
+    // { path: 'home-three', component: HomeThreeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'job-list', component: JobListComponent },
+    // { path: 'favourite-job', component: FavouriteJobComponent },
+    { path: 'job-details', component: JobDetailsComponent },
+    { path: 'post-a-job', component: PostAJobComponent },
+    // { path: 'candidate-list', component: CandidateListComponent },
+    // { path: 'candidate-details', component: CandidateDetailsComponent },
+    // { path: 'single-resume', component: SingleResumeComponent },
+    { path: 'submit-resume', component: SubmitResumeComponent },
+    // { path: 'pricing', component: PricingComponent },
+    // { path: 'dashboard', component: DashboardComponent },
+    // { path: 'company-list', component: CompanyListComponent },
+    // { path: 'company-details', component: CompanyDetailsComponent },
+    { path: 'login', component: LoginComponent },
+    // { path: 'create-account', component: CreateAccountComponent },
+    // { path: 'profile', component: ProfileComponent },
+    // { path: 'single-profile', component: SingleProfileComponent },
+    { path: '404', component: ErrorComponent },
+    // { path: 'faq', component: FaqComponent },
+    // { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+    // { path: 'privacy-policy', component: PrivacyPolicyComponent },
+    // { path: 'blog', component: BlogComponent },
+    // { path: 'blog-details', component: BlogDetailsComponent },
+    // { path: 'contact', component: ContactComponent },
     // Here add new pages component
 
-    {path: '**', component: ErrorComponent} // This line will remain down from the whole pages component list
+    { path: '**', component: ErrorComponent }, // This line will remain down from the whole pages component list
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, {})],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

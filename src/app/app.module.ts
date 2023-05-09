@@ -33,46 +33,55 @@ import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privac
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
+import { AuthService } from '../services/auth.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PreloaderComponent,
-    NavbarComponent,
-    FooterComponent,
-    HomeOneComponent,
-    HomeTwoComponent,
-    HomeThreeComponent,
-    AboutComponent,
-    JobListComponent,
-    FavouriteJobComponent,
-    JobDetailsComponent,
-    PostAJobComponent,
-    CandidateListComponent,
-    CandidateDetailsComponent,
-    SingleResumeComponent,
-    SubmitResumeComponent,
-    PricingComponent,
-    DashboardComponent,
-    CompanyListComponent,
-    CompanyDetailsComponent,
-    LoginComponent,
-    CreateAccountComponent,
-    ProfileComponent,
-    SingleProfileComponent,
-    ErrorComponent,
-    FaqComponent,
-    TermsAndConditionsComponent,
-    PrivacyPolicyComponent,
-    ContactComponent,
-    BlogDetailsComponent,
-    BlogComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PreloaderComponent,
+        NavbarComponent,
+        FooterComponent,
+        HomeOneComponent,
+        HomeTwoComponent,
+        HomeThreeComponent,
+        AboutComponent,
+        JobListComponent,
+        FavouriteJobComponent,
+        JobDetailsComponent,
+        PostAJobComponent,
+        CandidateListComponent,
+        CandidateDetailsComponent,
+        SingleResumeComponent,
+        SubmitResumeComponent,
+        PricingComponent,
+        DashboardComponent,
+        CompanyListComponent,
+        CompanyDetailsComponent,
+        LoginComponent,
+        CreateAccountComponent,
+        ProfileComponent,
+        SingleProfileComponent,
+        ErrorComponent,
+        FaqComponent,
+        TermsAndConditionsComponent,
+        PrivacyPolicyComponent,
+        ContactComponent,
+        BlogDetailsComponent,
+        BlogComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        AuthService,
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

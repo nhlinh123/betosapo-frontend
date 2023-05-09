@@ -3,11 +3,11 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-text">
-                    <h2>Log In</h2>
+                    <h2>ログイン</h2>
                     <ul>
-                        <li><a routerLink="/">Home</a></li>
+                        <li><a routerLink="/">家</a></li>
                         <li><i class="icofont-simple-right"></i></li>
-                        <li>Log In</li>
+                        <li>ログイン</li>
                     </ul>
                 </div>
             </div>
@@ -17,68 +17,82 @@
 
 <div class="login-area pt-100">
     <div class="container">
-        <h2>Login Your Account</h2>
+        <h2>アカウントにログイン</h2>
 
-        <div class="login-wrap">
-            <div class="row">
-                <div class="col-sm-6 col-lg-6">
-                    <div class="jobseeker-item">
-                        <div class="jobseeker-icon">
-                            <i class="flaticon-job-search"></i>
-                        </div>
-                        
-                        <div class="jobseeker-inner">
-                            <span>Candidate</span>
-                            <h3>Login as a Candidate</h3>
-                        </div>
+<!--        <div class="login-wrap">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-6 col-lg-6">-->
+<!--                    <div class="jobseeker-item">-->
+<!--                        <div class="jobseeker-icon">-->
+<!--                            <i class="flaticon-job-search"></i>-->
+<!--                        </div>-->
+<!--                        -->
+<!--                        <div class="jobseeker-inner">-->
+<!--                            <span>Candidate</span>-->
+<!--                            <h3>Login as a Candidate</h3>-->
+<!--                        </div>-->
 
-                        <a routerLink="/login">Get Started<i class="icofont-arrow-right"></i></a>
-                    </div>
-                </div>
+<!--                        <a routerLink="/login">Get Started<i class="icofont-arrow-right"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="col-sm-6 col-lg-6">
-                    <div class="jobseeker-item">
-                        <div class="jobseeker-icon">
-                            <i class="flaticon-recruitment"></i>
-                        </div>
+<!--                <div class="col-sm-6 col-lg-6">-->
+<!--                    <div class="jobseeker-item">-->
+<!--                        <div class="jobseeker-icon">-->
+<!--                            <i class="flaticon-recruitment"></i>-->
+<!--                        </div>-->
 
-                        <div class="jobseeker-inner">
-                            <span>Employer</span>
-                            <h3>Login as a Employer</h3>
-                        </div>
+<!--                        <div class="jobseeker-inner">-->
+<!--                            <span>Employer</span>-->
+<!--                            <h3>Login as a Employer</h3>-->
+<!--                        </div>-->
 
-                        <a routerLink="/login">Get Started<i class="icofont-arrow-right"></i></a>
-                    </div>
+<!--                        <a routerLink="/login">Get Started<i class="icofont-arrow-right"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <form [formGroup]="form">
+            <div class="form-group">
+                <input type="text"
+                       class="form-control"
+                       formControlName="email"
+                       placeholder="電子メイル"
+                       [class]="isFormInValid('email') ? 'input-error' : ''">
+                <div *ngIf="isFormInValid('email')" class="error-text">
+                    正しい形式で入力してください
                 </div>
             </div>
-        </div>
-
-        <form>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username, Phone Number or Email">
-            </div>
 
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password"
+                       class="form-control"
+                       formControlName="password"
+                       placeholder="パスワード"
+                       [class]="isFormInValid('password') ? 'input-error' : ''">
+                <div *ngIf="isFormInValid('password')" class="error-text">
+                    正しい形式で入力してください
+                </div>
             </div>
         </form>
 
         <div class="login-sign-in">
-            <a routerLink="/">Forgot Password?</a>
+<!--            <a routerLink="/">Forgot Password?</a>-->
 
             <ul>
-                <li>Don’t Have Account ?</li>
-                <li><a routerLink="/create-account">Sign Up Here</a></li>
+                <li>アカウントを持っていませんか?</li>
+                <li><a routerLink="/create-account">サインアップはこちら</a></li>
             </ul>
 
             <div class="text-center">
-                <button type="submit" class="btn login-btn">Sign In</button>
+                <button type="submit" class="btn login-btn" (click)="login()">ログイン</button>
             </div>
         </div>
 
-        <div class="login-social">
-            <a href="#"><i class="icofont-facebook"></i> Login With Facebook</a>
-            <a class="login-google" href="#"><i class="icofont-google-plus"></i> Login With Google</a>
-        </div>
+<!--        <div class="login-social">-->
+<!--            <a href="#"><i class="icofont-facebook"></i> Login With Facebook</a>-->
+<!--            <a class="login-google" href="#"><i class="icofont-google-plus"></i> Login With Google</a>-->
+<!--        </div>-->
     </div>
 </div>
