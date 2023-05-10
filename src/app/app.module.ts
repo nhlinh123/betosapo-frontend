@@ -35,10 +35,11 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { AuthService } from '../services/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CategoryService } from '../services/category.service';
 import { NiceSelectModule } from 'ng-nice-select';
+import {NotifierModule} from "angular-notifier";
 
 @NgModule({
     declarations: [
@@ -80,6 +81,8 @@ import { NiceSelectModule } from 'ng-nice-select';
         HttpClientModule,
         ReactiveFormsModule,
         NiceSelectModule,
+        FormsModule,
+        NotifierModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

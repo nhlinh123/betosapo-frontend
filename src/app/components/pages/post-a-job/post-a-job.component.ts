@@ -1,14 +1,10 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CategoryService } from '../../../../services/category.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { JobService } from '../../../../services/job.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
     selector: 'app-post-a-job',
@@ -19,7 +15,16 @@ export class PostAJobComponent implements OnInit, OnDestroy {
     form: FormGroup;
     subscribe: Subject<any> = new Subject<any>();
     categories: any[];
-    constructor(private categoryService: CategoryService) {}
+    partTime: any;
+    fullTime: any;
+    myFiles: any[] = [];
+    loading = false;
+
+    constructor(
+        private categoryService: CategoryService,
+        private jobService: JobService,
+        private notifier: NotifierService
+    ) {}
 
     ngOnInit(): void {
         this.initForm();
@@ -27,8 +32,8 @@ export class PostAJobComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subscribe.unsubscribe();
         this.subscribe.complete();
+        this.subscribe.unsubscribe();
     }
 
     initForm() {
@@ -40,10 +45,7 @@ export class PostAJobComponent implements OnInit, OnDestroy {
             salary: new FormControl(null),
             number: new FormControl(null),
             position: new FormControl(null),
-            jobType: new FormControl(null),
-            status: new FormControl(null),
             categoryId: new FormControl(null),
-            picturePath: new FormControl(null),
         });
     }
 
@@ -60,5 +62,71 @@ export class PostAJobComponent implements OnInit, OnDestroy {
                 });
                 console.log(this.categories);
             });
+    }
+
+    onFileChange(files) {
+        if (this.myFiles.length === 10) return;
+        for (const file of files) {
+            this.myFiles.push(file);
+        }
+    }
+
+    onDeleteFile(index: number) {
+        this.myFiles.splice(index, 1);
+    }
+
+    getUserId() {
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        return user.id;
+    }
+
+    createJob() {
+        this.loading = true;
+        const data = this.form.getRawValue();
+        const body = new FormData();
+        for (const key of Object.keys(data)) {
+            body.append(key, data[key]);
+        }
+        body.append('status', 'OPEN');
+        body.append('userId', this.getUserId());
+        body.append('jobType', this.partTime ?? this.fullTime);
+        for (const file of this.myFiles) {
+            body.append('files', file);
+        }
+        this.jobService
+            .createJob(body)
+            .pipe(takeUntil(this.subscribe))
+            .subscribe(
+                (res) => {
+                    if (res) {
+                        this.notifier.notify(
+                            'success',
+                            '新しい成功した仕事を作成する'
+                        );
+                        this.form.reset();
+                    }
+                },
+                (error) => {
+                    this.notifier.notify(
+                        'success',
+                        'エラーが発生しました。後でもう一度お試しください。'
+                    );
+                    this.loading = false;
+                },
+                () => {
+                    this.loading = false;
+                }
+            );
+    }
+
+    onTypeChange(type) {
+        switch (type) {
+            case 'full':
+                this.partTime = null;
+                break;
+            case 'part':
+                this.fullTime = null;
+                break;
+        }
     }
 }

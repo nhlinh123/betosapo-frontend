@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "peof-ng": {
@@ -36,7 +36,8 @@
                 "node_modules/jquery-nice-select/scss/nice-select.scss",
                 "src/assets/fonts/flaticon.css",
                 "src/styles.scss",
-                "src/responsive.scss"
+                "src/responsive.scss",
+                "node_modules/angular-notifier/styles.scss"
             ],
             "scripts": [
                 "node_modules/jquery/dist/jquery.min.js",

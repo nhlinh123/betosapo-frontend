@@ -18,7 +18,7 @@
 <div class="post-job-area pt-100">
     <div class="container">
         <div class="post-job-item">
-            <form>
+            <form [formGroup]="form">
                 <div class="post-job-heading">
                     <h2>求人を投稿する</h2>
                 </div>
@@ -26,18 +26,17 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Job Title</label>
-                            <input type="text" class="form-control" placeholder="UX/UI Designer">
+                            <label>タイトル</label>
+                            <input type="text" formControlName="title" class="form-control" placeholder="UX/UI Designer">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Job Category</label>
-
+                            <label>カテゴリー</label>
                             <div class="job-category-area">
                                 <select nice-select formControlName="categoryId">
-                                    <option *ngFor="let category of categories">{{category.Name}}</option>
+                                    <option *ngFor="let category of categories" value="{{category.Id}}">{{category.Name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -45,15 +44,15 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Company Name</label>
-                            <input type="text" class="form-control" placeholder="Winbrans.com">
+                            <label>会社名</label>
+                            <input type="text" formControlName="companyName" class="form-control" placeholder="Winbrans.com">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <div class="job-currency-area">
-                                <label>Salary</label>
+                                <label>給料</label>
                                 <input type="text" formControlName="salary" class="form-control" placeholder="upto 1000$">
                             </div>
                         </div>
@@ -61,31 +60,45 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Number</label>
+                            <label>就業者数</label>
                             <input type="number" formControlName="number" class="form-control" placeholder="10">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" placeholder="210-27 Quadra, Market Street, Victoria Canada">
+                            <label>住所</label>
+                            <input type="text" formControlName="location" class="form-control" placeholder="210-27 Quadra, Market Street, Victoria Canada">
                         </div>
                     </div>
 
                     <div class="col-lg-12">
                         <div class="form-group">
                             <div class="job-type-area">
-                                <span>Job Type</span>
+                                <span>タイプ</span>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="FULLTIME" checked>
-                                    <label class="form-check-label" for="inlineRadio1">Full Time</label>
+                                    <input class="form-check-input"
+                                           [(ngModel)]="fullTime"
+                                           [ngModelOptions]="{standalone: true}"
+                                           type="radio"
+                                           name="inlineRadioOptions"
+                                           id="inlineRadio1"
+                                           (change)="onTypeChange('full')"
+                                           value="FULLTIME" checked>
+                                    <label class="form-check-label" for="inlineRadio1">フルタイム</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="PARTTIME">
-                                    <label class="form-check-label" for="inlineRadio2">Part Time</label>
+                                    <input class="form-check-input"
+                                           [(ngModel)]="partTime"
+                                           [ngModelOptions]="{standalone: true}"
+                                           type="radio"
+                                           name="inlineRadioOptions"
+                                           id="inlineRadio2"
+                                           (change)="onTypeChange('part')"
+                                           value="PARTTIME">
+                                    <label class="form-check-label" for="inlineRadio2">パートタイム</label>
                                 </div>
                             </div>
                         </div>
@@ -93,14 +106,31 @@
 
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Job Description</label>
-                            <textarea id="your_message" rows="8" class="form-control"></textarea>
+                            <label>説明</label>
+                            <textarea formControlName="description" id="your_message" rows="8" class="form-control"></textarea>
                         </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input multiple type="file" [ngModel]="myFiles" [ngModelOptions]="{standalone: true}" class="form-control" style="padding-top: 11px;" (change)="onFileChange($event.target.files)">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ng-container *ngFor="let file of myFiles; let i = index">
+                            <div class="row">
+                                <span class="col-6 over-flow">{{file.name}}</span>
+                                <span class="col-6">
+                                    <a (click)="onDeleteFile(i)" class="cursor-pointer">
+                                        <i class="icofont-ui-remove"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </ng-container>
                     </div>
                 </div>
 
                 <div class="text-left">
-                    <button type="submit" class="btn create-ac-btn">Post</button>
+                    <button type="submit" [disabled]="loading" (click)="createJob()" class="btn create-ac-btn">役職</button>
                 </div>
             </form>
         </div>
