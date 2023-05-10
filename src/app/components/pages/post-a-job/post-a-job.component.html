@@ -34,12 +34,10 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Job Category</label>
+
                             <div class="job-category-area">
-                                <select>
-                                    <option>IT & Technology</option>
-                                    <option>Web Developer</option>
-                                    <option>UX/UI Design</option>
-                                    <option>SEO</option>
+                                <select nice-select formControlName="categoryId">
+                                    <option *ngFor="let category of categories">{{category.Name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -55,21 +53,16 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <div class="job-currency-area">
-                                <label>Company Name</label>
-                                <input type="text" class="form-control" placeholder="Winbrans.com">
-                                <select>
-                                    <option>$USD</option>
-                                    <option>EURO</option>
-                                    <option>POUND</option>
-                                </select>
+                                <label>Salary</label>
+                                <input type="text" formControlName="salary" class="form-control" placeholder="upto 1000$">
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Vacancies</label>
-                            <input type="text" class="form-control" placeholder="10">
+                            <label>Number</label>
+                            <input type="number" formControlName="number" class="form-control" placeholder="10">
                         </div>
                     </div>
 
@@ -86,18 +79,13 @@
                                 <span>Job Type</span>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="FULLTIME" checked>
                                     <label class="form-check-label" for="inlineRadio1">Full Time</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="PARTTIME">
                                     <label class="form-check-label" for="inlineRadio2">Part Time</label>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option2">
-                                    <label class="form-check-label" for="inlineRadio3">Intern</label>
                                 </div>
                             </div>
                         </div>
