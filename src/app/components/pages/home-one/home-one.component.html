@@ -3,8 +3,8 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="banner-text">
-                    <h1>Find Your <span>Desire</span> Job</h1>
-                    <p>Jobs, Employment & Future Career Opportunities</p>
+                    <h1><span>希望</span>の仕事を見つける</h1>
+                    <p>仕事、雇用、将来のキャリアの機会</p>
 
                     <div class="banner-form-area">
                         <form>
@@ -12,7 +12,7 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label><i class="icofont-search-1"></i></label>
-                                        <input type="text" class="form-control" placeholder="Job Title">
+                                        <input type="text" class="form-control" placeholder="タイトル">
                                     </div>
                                 </div>
 
@@ -25,11 +25,8 @@
 
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <select>
-                                            <option>Job Category</option>
-                                            <option>Another option</option>
-                                            <option>A option</option>
-                                            <option>Potato</option>
+                                        <select nice-select>
+                                            <option *ngFor="let category of categories" value="{{category.Id}}">{{category.Name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -79,79 +76,79 @@
 <section class="category-area ptb-100">
     <div class="container">
         <div class="section-title">
-            <h2>Choose Your Desire Category</h2>
+            <h2>希望のカテゴリを選択してください</h2>
         </div>
 
-        <div class="row">
-            <div class="col-sm-3 col-lg-3 category-border">
-                <div class="category-item">
-                    <i class="flaticon-settings"></i>
-                    <a routerLink="/">Technical Support</a>
-                </div>
-            </div>
+        <div class="row" style="display: flex;justify-content: center;">
+<!--            <div class="col-sm-3 col-lg-3 category-border">-->
+<!--                <div class="category-item">-->
+<!--                    <i class="flaticon-settings"></i>-->
+<!--                    <a routerLink="/">Technical Support</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-sm-3 col-lg-3 category-border">
-                <div class="category-item category-two">
-                    <i class="flaticon-layers"></i>
-                    <a routerLink="/">Business Development</a>
-                </div>
-            </div>
+<!--            <div class="col-sm-3 col-lg-3 category-border">-->
+<!--                <div class="category-item category-two">-->
+<!--                    <i class="flaticon-layers"></i>-->
+<!--                    <a routerLink="/">Business Development</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-sm-3 col-lg-3 category-border">
-                <div class="category-item category-three">
-                    <i class="flaticon-house"></i>
-                    <a routerLink="/">Real Estate Business</a>
-                </div>
-            </div>
+<!--            <div class="col-sm-3 col-lg-3 category-border">-->
+<!--                <div class="category-item category-three">-->
+<!--                    <i class="flaticon-house"></i>-->
+<!--                    <a routerLink="/">Real Estate Business</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-sm-3 col-lg-3 category-border">
-                <div class="category-item category-four">
-                    <i class="flaticon-analysis"></i>
-                    <a routerLink="/">Share Maeket Analysis</a>
-                </div>
-            </div>
+<!--            <div class="col-sm-3 col-lg-3 category-border">-->
+<!--                <div class="category-item category-four">-->
+<!--                    <i class="flaticon-analysis"></i>-->
+<!--                    <a routerLink="/">Share Maeket Analysis</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-sm-3 col-lg-3 category-border-three">
-                <div class="category-item category-five">
-                    <i class="flaticon-sun"></i>
-                    <a routerLink="/">Weather & Environment</a>
-                </div>
-            </div>
+<!--            <div class="col-sm-3 col-lg-3 category-border-three">-->
+<!--                <div class="category-item category-five">-->
+<!--                    <i class="flaticon-sun"></i>-->
+<!--                    <a routerLink="/">Weather & Environment</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-sm-3 col-lg-3 category-border-two">
-                <div class="category-item category-six">
-                    <i class="flaticon-hand"></i>
-                    <a routerLink="/">Finance & Banking Service</a>
-                </div>
-            </div>
+<!--            <div class="col-sm-3 col-lg-3 category-border-two">-->
+<!--                <div class="category-item category-six">-->
+<!--                    <i class="flaticon-hand"></i>-->
+<!--                    <a routerLink="/">Finance & Banking Service</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-sm-3 col-lg-3 category-border-two">
-                <div class="category-item category-seven">
-                    <i class="flaticon-neural"></i>
-                    <a routerLink="/">IT & Networing Sevices</a>
-                </div>
-            </div>
+<!--            <div class="col-sm-3 col-lg-3 category-border-two">-->
+<!--                <div class="category-item category-seven">-->
+<!--                    <i class="flaticon-neural"></i>-->
+<!--                    <a routerLink="/">IT & Networing Sevices</a>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div class="col-sm-3 col-lg-3 category-border-two">
                 <div class="category-item category-eight">
                     <i class="flaticon-dish"></i>
-                    <a routerLink="/">Restaurant Services</a>
-                </div>
-            </div>
-
-            <div class="col-sm-3 offset-sm-3 offset-lg-0 col-lg-3 category-border-two">
-                <div class="category-item category-nine">
-                    <i class="icofont-fire-burn"></i>
-                    <a routerLink="/">Defence  & Fire Service</a>
+                    <a routerLink="/">レストランサービス</a>
                 </div>
             </div>
 
             <div class="col-sm-3 col-lg-3">
                 <div class="category-item category-ten">
                     <i class="flaticon-truck"></i>
-                    <a routerLink="/">Home Delivery Services</a>
+                    <a routerLink="/">宅配サービス</a>
                 </div>
             </div>
+
+<!--            <div class="col-sm-3 offset-sm-3 offset-lg-0 col-lg-3 category-border-two">-->
+<!--                <div class="category-item category-nine">-->
+<!--                    <i class="icofont-fire-burn"></i>-->
+<!--                    <a routerLink="/">Defence  & Fire Service</a>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </section>
@@ -194,15 +191,15 @@
 <section class="job-area pb-70">
     <div class="container">
         <div class="section-title">
-            <h2>Recent Jobs</h2>
+            <h2>最近の仕事</h2>
         </div>
 
         <div class="sorting-menu">
             <ul>
                 <li class="filter active" data-filter="all">All</li>
-                <li class="filter" data-filter=".web">New</li>
-                <li class="filter" data-filter=".ux">Full Time</li>
-                <li class="filter" data-filter=".wp">Part Time</li>
+                <li class="filter" data-filter=".web">新しい</li>
+                <li class="filter" data-filter=".ux">フルタイム</li>
+                <li class="filter" data-filter=".wp">パートタイム</li>
             </ul>
         </div>
 
@@ -397,6 +394,11 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="display:flex; justify-content: center">
+                        <span class="btn-view-mores" (click)="viewMore()">View mores</span>
                     </div>
                 </div>
             </div>

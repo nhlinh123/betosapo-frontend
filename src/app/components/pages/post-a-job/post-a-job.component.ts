@@ -50,18 +50,7 @@ export class PostAJobComponent implements OnInit, OnDestroy {
     }
 
     initData() {
-        this.categoryService
-            .getAll()
-            .pipe(takeUntil(this.subscribe))
-            .subscribe((res) => {
-                this.categories = res?.data.map((rs) => {
-                    return {
-                        Id: rs.Id,
-                        Name: rs.Name,
-                    };
-                });
-                console.log(this.categories);
-            });
+        this.categories = JSON.parse(sessionStorage.getItem('categories'));
     }
 
     onFileChange(files) {
