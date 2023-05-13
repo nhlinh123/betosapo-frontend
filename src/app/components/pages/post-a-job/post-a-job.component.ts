@@ -25,7 +25,7 @@ export class PostAJobComponent implements OnInit, OnDestroy {
         private jobService: JobService,
         private notifier: NotifierService
     ) {}
-
+    // TODO: Sửa lại uploadfile tiếng nhật
     ngOnInit(): void {
         this.initForm();
         this.initData();

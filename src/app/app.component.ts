@@ -1,21 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-    Router,
-    NavigationStart,
     NavigationCancel,
     NavigationEnd,
+    NavigationStart,
+    Router,
 } from '@angular/router';
 import {
     Location,
     LocationStrategy,
     PathLocationStrategy,
 } from '@angular/common';
-import { filter, takeUntil } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { CategoryService } from '../services/category.service';
-import { Subject } from 'rxjs';
-declare let $: any;
 
+declare let $: any;
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { filter } from 'rxjs/operators';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -28,30 +27,24 @@ declare let $: any;
         },
     ],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
     location: any;
     routerSubscription: any;
-    subscribe: Subject<any> = new Subject<any>();
 
-    constructor(
-        private router: Router,
-        private authService: AuthService,
-        private categoryService: CategoryService
-    ) {}
+    constructor(private router: Router, private authService: AuthService) {}
 
     ngOnInit() {
         this.recallJsFuntions();
         const token = sessionStorage.getItem('token');
         if (token) {
-            //TODO: tạm thời chưa có refesh token exprie date nên workarond tạm ở đây??
-            this.authService.authentication$.next(true);
+            const helper = new JwtHelperService();
+            const isExpired = helper.isTokenExpired(token);
+            if (!isExpired) {
+                this.authService.authentication$.next(true);
+            } else {
+                this.router.navigateByUrl('/login');
+            }
         }
-        this.initData();
-    }
-
-    ngOnDestroy() {
-        this.subscribe.complete();
-        this.subscribe.unsubscribe();
     }
 
     recallJsFuntions() {
@@ -76,24 +69,6 @@ export class AppComponent implements OnInit, OnDestroy {
                     return;
                 }
                 window.scrollTo(0, 0);
-            });
-    }
-
-    initData() {
-        this.categoryService
-            .getAll()
-            .pipe(takeUntil(this.subscribe))
-            .subscribe((res) => {
-                const categories = res?.data.map((rs) => {
-                    return {
-                        Id: rs.Id,
-                        Name: rs.Name,
-                    };
-                });
-                sessionStorage.setItem(
-                    'categories',
-                    JSON.stringify(categories)
-                );
             });
     }
 }
