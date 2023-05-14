@@ -118,7 +118,42 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <input multiple type="file" [ngModel]="myFiles" [ngModelOptions]="{standalone: true}" class="form-control" style="padding-top: 11px;" (change)="onFileChange($event.target.files)">
+                            <input #fileElement
+                                   hidden
+                                   multiple
+                                   type="file"
+                                   [accept]="'.png, .jpg, .jpeg'"
+                                   class="form-control"
+                                   style="padding-top: 11px;"
+                                   (change)="onFileChange($event, 'logo')">
+                            <button class="btn-browser-file" (click)="openBrowser('logo')">ロゴをアップロードする</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ng-container *ngFor="let file of logoFile; let i = index">
+                            <div class="row">
+                                <span class="col-6 over-flow">{{file.name}}</span>
+                                <span class="col-6">
+                                    <a (click)="onDeleteFile(i, 'logo')" class="cursor-pointer">
+                                        <i class="icofont-ui-remove"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input #filesElement
+                                   hidden
+                                   multiple
+                                   type="file"
+                                   [accept]="'.png, .jpg, .jpeg'"
+                                   [ngModel]="myFiles"
+                                   [ngModelOptions]="{standalone: true}"
+                                   class="form-control"
+                                   style="padding-top: 11px;"
+                                   (change)="onFileChange($event, 'pictures')">
+                            <button class="btn-browser-file" (click)="openBrowser('pictures')">写真をアップロードする</button>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -126,7 +161,7 @@
                             <div class="row">
                                 <span class="col-6 over-flow">{{file.name}}</span>
                                 <span class="col-6">
-                                    <a (click)="onDeleteFile(i)" class="cursor-pointer">
+                                    <a (click)="onDeleteFile(i, 'pictures')" class="cursor-pointer">
                                         <i class="icofont-ui-remove"></i>
                                     </a>
                                 </span>
@@ -136,7 +171,7 @@
                 </div>
 
                 <div class="text-left">
-                    <button type="submit" [disabled]="loading" (click)="createJob()" class="btn create-ac-btn">役職</button>
+                    <button type="submit" [disabled]="loading || (form.invalid && !(myFiles.length > 0) && !(logoFile.length > 0))" (click)="createJob()" class="btn create-ac-btn">役職</button>
                 </div>
             </form>
         </div>

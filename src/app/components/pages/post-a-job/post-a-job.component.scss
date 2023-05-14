@@ -7,3 +7,14 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+.btn-browser-file {
+    display: block;
+    color: #ffffff;
+    background: linear-gradient(90deg, rgb(56, 167, 69) 0%, rgb(76, 206, 91) 63%);
+    padding: 10px;
+    cursor: pointer;
+    min-width: 50%;
+    width: 50%;
+    border: none;
+}

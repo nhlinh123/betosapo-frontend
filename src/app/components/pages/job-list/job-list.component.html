@@ -2,6 +2,11 @@
 
 <section class="job-area job-area-two pt-100">
     <div class="container">
+        <div class="row" *ngIf="left > 0">
+            <div class="col-12" style="display:flex; justify-content: center">
+                <span class="btn-view-mores" (click)="viewMore()">もっと見る</span>
+            </div>
+        </div>
         <div class="row">
             <ng-container *ngFor="let job of jobs">
                 <div class="col-lg-6 mix web ui">
@@ -14,13 +19,13 @@
                                 <a routerLink="/">{{job?.CompanyName}}</a>
                                 <ul>
                                     <li><i class="icofont-money-bag">{{job?.Salary}}</i></li>
-                                    <li><i class="icofont-location-pin"></i>Location {{job?.Location}}</li>
+                                    <li><i class="icofont-location-pin"></i>{{job?.Location}}</li>
                                 </ul>
                             </div>
 
                             <div class="job-inner-right">
                                 <ul>
-                                    <li><a routerLink="/job-detail/{{job.Id}}">申し込み</a></li>
+                                    <li><a (click)="goToJobDetail(job)">申し込み</a></li>
                                     <li><span>{{job?.JobType}}</span></li>
                                 </ul>
                             </div>
@@ -28,11 +33,6 @@
                     </div>
                 </div>
             </ng-container>
-        </div>
-        <div class="row" *ngIf="left > 0">
-            <div class="col-12" style="display:flex; justify-content: center">
-                <span class="btn-view-mores" (click)="viewMore()">もっと見る</span>
-            </div>
         </div>
 
     </div>

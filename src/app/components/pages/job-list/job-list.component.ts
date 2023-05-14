@@ -6,6 +6,7 @@ import { finalize, takeUntil, tap } from 'rxjs/operators';
 import { BaseResponse } from '../../../../models/base-response.model';
 import { DataStoreService } from '../../../../services/data-store.service';
 import { loading, unloading } from '../../../../constants/function.constant';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
     selector: 'app-job-list',
@@ -21,7 +22,8 @@ export class JobListComponent implements OnInit, OnDestroy {
     limit: number = 8;
     constructor(
         private jobService: JobService,
-        private dataStore: DataStoreService
+        private dataStore: DataStoreService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -96,5 +98,14 @@ export class JobListComponent implements OnInit, OnDestroy {
                 takeUntil(this.subscribe)
             )
             .subscribe();
+    }
+
+    goToJobDetail(job: IJob) {
+        const navigationExtras: NavigationExtras = {
+            state: {
+                job: job,
+            },
+        };
+        this.router.navigate([`/job-detail/${job.Id}`], navigationExtras);
     }
 }

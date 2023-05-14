@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { IJob } from '../../../../models/job.model';
 
 @Component({
     selector: 'app-job-details',
@@ -7,10 +8,15 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./job-details.component.scss'],
 })
 export class JobDetailsComponent implements OnInit {
-    constructor(private route: ActivatedRoute) {}
+    job: IJob;
+    constructor(private router: Router) {}
 
     ngOnInit() {
         const job = history.state.job;
-        console.log(job);
+        if (!job) {
+            this.router.navigateByUrl('/job-list');
+        }
+        this.job = job;
+        console.log(this.job);
     }
 }

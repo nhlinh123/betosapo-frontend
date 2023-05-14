@@ -1,10 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+    Component,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../../../../services/category.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { JobService } from '../../../../services/job.service';
 import { NotifierService } from 'angular-notifier';
+import { loading, unloading } from '../../../../constants/function.constant';
+
+type FileType = 'logo' | 'pictures';
 
 @Component({
     selector: 'app-post-a-job',
@@ -15,17 +24,22 @@ export class PostAJobComponent implements OnInit, OnDestroy {
     form: FormGroup;
     subscribe: Subject<any> = new Subject<any>();
     categories: any[];
+    /* variables to manipulate job type */
     partTime: any;
     fullTime: any;
+    /* variables to manipulate files */
     myFiles: any[] = [];
+    logoFile: any[] = [];
     loading = false;
 
+    @ViewChild('fileElement', { static: true }) fileElement: ElementRef;
+    @ViewChild('filesElement', { static: true }) filesElement: ElementRef;
     constructor(
         private categoryService: CategoryService,
         private jobService: JobService,
         private notifier: NotifierService
     ) {}
-    // TODO: Sửa lại uploadfile tiếng nhật
+
     ngOnInit(): void {
         this.initForm();
         this.initData();
@@ -38,14 +52,14 @@ export class PostAJobComponent implements OnInit, OnDestroy {
 
     initForm() {
         this.form = new FormGroup({
-            title: new FormControl(null),
-            description: new FormControl(null),
-            companyName: new FormControl(null),
-            location: new FormControl(null),
-            salary: new FormControl(null),
-            number: new FormControl(null),
-            position: new FormControl(null),
-            categoryId: new FormControl(null),
+            title: new FormControl(null, [Validators.required]),
+            description: new FormControl(null, [Validators.required]),
+            companyName: new FormControl(null, [Validators.required]),
+            location: new FormControl(null, [Validators.required]),
+            salary: new FormControl(null, [Validators.required]),
+            number: new FormControl(null, [Validators.required]),
+            position: new FormControl(null, [Validators.required]),
+            categoryId: new FormControl(null, [Validators.required]),
         });
     }
 
@@ -53,15 +67,20 @@ export class PostAJobComponent implements OnInit, OnDestroy {
         this.categories = JSON.parse(sessionStorage.getItem('categories'));
     }
 
-    onFileChange(files) {
-        if (this.myFiles.length === 10) return;
-        for (const file of files) {
-            this.myFiles.push(file);
+    onFileChange(event, type: FileType) {
+        if (type === 'pictures') {
+            if (this.myFiles.length === 10) return;
+            for (const file of event.target.files) {
+                this.myFiles.push(file);
+            }
+        } else {
+            this.logoFile = [Object.values(event.target.files)[0]];
         }
     }
 
-    onDeleteFile(index: number) {
-        this.myFiles.splice(index, 1);
+    onDeleteFile(index: number, type: FileType) {
+        if (type === 'pictures') this.myFiles.splice(index, 1);
+        if (type === 'logo') this.logoFile.splice(index, 1);
     }
 
     getUserId() {
@@ -79,12 +98,19 @@ export class PostAJobComponent implements OnInit, OnDestroy {
         body.append('status', 'OPEN');
         body.append('userId', this.getUserId());
         body.append('jobType', this.partTime ?? this.fullTime);
+        for (const file of this.logoFile) {
+            body.append('files', file);
+        }
         for (const file of this.myFiles) {
             body.append('files', file);
         }
+        loading();
         this.jobService
             .createJob(body)
-            .pipe(takeUntil(this.subscribe))
+            .pipe(
+                finalize(() => unloading()),
+                takeUntil(this.subscribe)
+            )
             .subscribe(
                 (res) => {
                     if (res) {
@@ -92,15 +118,18 @@ export class PostAJobComponent implements OnInit, OnDestroy {
                             'success',
                             '新しい成功した仕事を作成する'
                         );
-                        this.form.reset();
+                        this.resetForm();
                     }
                 },
                 (error) => {
-                    this.notifier.notify(
-                        'success',
-                        'エラーが発生しました。後でもう一度お試しください。'
-                    );
-                    this.loading = false;
+                    if (error) {
+                        console.error(error);
+                        this.notifier.notify(
+                            'error',
+                            'エラーが発生しました。後でもう一度お試しください。'
+                        );
+                        this.loading = false;
+                    }
                 },
                 () => {
                     this.loading = false;
@@ -117,5 +146,16 @@ export class PostAJobComponent implements OnInit, OnDestroy {
                 this.fullTime = null;
                 break;
         }
+    }
+
+    openBrowser(type: FileType) {
+        if (type === 'logo') this.fileElement.nativeElement.click();
+        if (type === 'pictures') this.filesElement.nativeElement.click();
+    } //
+
+    private resetForm() {
+        this.form.reset();
+        this.myFiles = [];
+        this.logoFile = [];
     }
 }

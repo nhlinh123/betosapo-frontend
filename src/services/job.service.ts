@@ -65,7 +65,7 @@ export class JobService {
 
     private transformJob(item: IJob) {
         const picturesString = item.PicturePath.replace(
-            /C:\\Works\\betosapo-api\\src\\/g,
+            environment.pathRegex,
             this.apiUrl + '/'
         ).replace(/\\/g, '/');
         const pictureArray = picturesString.split(',');
