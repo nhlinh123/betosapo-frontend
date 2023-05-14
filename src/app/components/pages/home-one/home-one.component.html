@@ -1,38 +1,4 @@
-<div class="banner-area banner-img-one">
-    <div class="d-table">
-        <div class="d-table-cell">
-            <div class="container">
-                <div class="banner-text">
-                    <h1><span>希望</span>の仕事を見つける</h1>
-                    <p>仕事、雇用、将来のキャリアの機会</p>
-
-                    <div class="banner-form-area">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="form-group">
-                                        <label><i class="icofont-search-1"></i></label>
-                                        <input type="text" class="form-control" placeholder="タイトル">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <select nice-select>
-                                            <option *ngFor="let category of categories" value="{{category.Id}}">{{category.Name}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn banner-form-btn">検索</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<app-header (triggerSearch)="search($event)"></app-header>
 
 <section class="category-area ptb-100">
     <div class="container">
@@ -66,9 +32,9 @@
 
         <div class="sorting-menu">
             <ul>
-                <li class="filter active" data-filter=".web" (click)="onGetData('8newest')">新しい</li>
-                <li class="filter" data-filter=".ux" (click)="onGetData('FULLTIME')">フルタイム</li>
-                <li class="filter" data-filter=".wp" (click)="onGetData('PARTTIME')">パートタイム</li>
+                <li class="filter active" (click)="onGetData('8newest')">新しい</li>
+                <li class="filter" (click)="onGetData('FULLTIME')">フルタイム</li>
+                <li class="filter" (click)="onGetData('PARTTIME')">パートタイム</li>
             </ul>
         </div>
 
@@ -80,9 +46,9 @@
                             <img [src]="job?.firstPicture" alt="Job">
 
                             <div class="job-inner align-items-center">
-                                <div class="job-inner-left">
+                            <div class="job-inner-left">
                                     <h3 class="over-flow" tooltip="{{job?.Title}}" placement="top">{{job?.Title}}</h3>
-                                    <a routerLink="/company-details">{{job?.CompanyName}}</a>
+                                    <a routerLink="/">{{job?.CompanyName}}</a>
                                     <ul>
                                         <li><i class="icofont-money-bag">{{job?.Salary}}</i></li>
                                         <li><i class="icofont-location-pin"></i>Location {{job?.Location}}</li>
@@ -91,7 +57,7 @@
 
                                 <div class="job-inner-right">
                                     <ul>
-                                        <li><a routerLink="/job-detail/{{job.Id}}">申し込み</a></li>
+                                        <li><a (click)="goToJobDetail(job)">申し込み</a></li>
                                         <li><span>{{job?.JobType}}</span></li>
                                     </ul>
                                 </div>
@@ -99,12 +65,6 @@
                         </div>
                     </div>
                 </ng-container>
-
-                <div class="row">
-                    <div class="col-12" style="display:flex; justify-content: center">
-                        <span class="btn-view-mores" (click)="viewMore()">View mores</span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

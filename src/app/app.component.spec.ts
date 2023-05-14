@@ -19,6 +19,7 @@ describe('AppComponent', () => {
     it(`should have as title 'peof-ng'`, () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.componentInstance;
+        app.ngOnInit();
     });
 
     it('should render title', () => {

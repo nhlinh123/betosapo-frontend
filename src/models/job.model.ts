@@ -18,3 +18,5 @@ export interface IJob {
 }
 
 export type JobsByTypeRequest = { type: string; limit: number; offset: number };
+
+export type SearchJobRequest = { title: string; categoryId: number };

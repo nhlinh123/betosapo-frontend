@@ -1,0 +1,34 @@
+<div class="banner-area banner-img-one">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="banner-text">
+                    <h1><span>希望</span>の仕事を見つける</h1>
+                    <p>仕事、雇用、将来のキャリアの機会</p>
+
+                    <div class="banner-form-area">
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label><i class="icofont-search-1"></i></label>
+                                        <input type="text" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="タイトル">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="category" [ngModelOptions]="{standalone: true}" nice-select>
+                                            <option *ngFor="let category of categories" value="{{category.Id}}">{{category.Name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn banner-form-btn" (click)="search()">検索</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

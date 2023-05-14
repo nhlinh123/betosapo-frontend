@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
+import { DataStoreService } from '../../../../services/data-store.service';
 
 @Component({
     selector: 'app-navbar',
@@ -9,7 +10,11 @@ import { AuthService } from '../../../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
     isLogin$ = this.authService.authentication$;
-    constructor(private router: Router, private authService: AuthService) {}
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private dataStore: DataStoreService
+    ) {}
 
     ngOnInit(): void {}
 
@@ -19,5 +24,9 @@ export class NavbarComponent implements OnInit {
                 this.router.navigateByUrl('/');
             }
         });
+    }
+
+    onResetData() {
+        this.dataStore.resetData();
     }
 }

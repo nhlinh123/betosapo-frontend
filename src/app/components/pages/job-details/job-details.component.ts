@@ -9,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class JobDetailsComponent implements OnInit {
     constructor(private route: ActivatedRoute) {}
 
-    ngOnInit(): void {
-        console.log(this.route.snapshot.paramMap.get('id'));
+    ngOnInit() {
+        const job = history.state.job;
+        console.log(job);
     }
 }

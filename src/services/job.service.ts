@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseResponse } from '../models/base-response.model';
-import { IJob, JobsByTypeRequest } from '../models/job.model';
+import { IJob, JobsByTypeRequest, SearchJobRequest } from '../models/job.model';
 
 @Injectable({
     providedIn: 'root',
@@ -46,6 +46,23 @@ export class JobService {
             );
     }
 
+    searchJobsByTypeAndTitle(body: SearchJobRequest): Observable<any> {
+        return this.http
+            .post(`${this.apiUrl}/${this.path}/searchJobsByTypeAndTitle`, body)
+            .pipe(
+                map((rs: BaseResponse<IJob[]>) => {
+                    return {
+                        code: rs.code,
+                        data: rs.data.map((item) => {
+                            return this.transformJob(item);
+                        }),
+                        total: rs.total,
+                        left: rs.left,
+                    } as BaseResponse<any>;
+                })
+            );
+    }
+
     private transformJob(item: IJob) {
         const picturesString = item.PicturePath.replace(
             /C:\\Works\\betosapo-api\\src\\/g,
@@ -56,6 +73,8 @@ export class JobService {
             ...item,
             PicturePath: pictureArray,
             firstPicture: pictureArray[0],
+            JobType:
+                item?.JobType === 'FULLTIME' ? 'フルタイム' : 'パートタイム',
         };
     }
 }

@@ -41,6 +41,7 @@ import { CategoryService } from '../services/category.service';
 import { NiceSelectModule } from 'ng-nice-select';
 import { NotifierModule } from 'angular-notifier';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { HeaderComponent } from './components/common/header/header.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
         ContactComponent,
         BlogDetailsComponent,
         BlogComponent,
+        HeaderComponent,
     ],
     imports: [
         BrowserModule,

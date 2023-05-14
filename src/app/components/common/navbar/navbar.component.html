@@ -7,12 +7,12 @@
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" routerLink="/"><img src="assets/img/logo.png" alt="Logo"></a>
+                <a routerLink="/" (click)="onResetData()" class="navbar-brand"><img src="assets/img/logo.png" alt="Logo"></a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ホームページ</a>
+                            <a routerLink="/" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ホームページ</a>
                         </li>
 
 <!--                        <li class="nav-item"><a routerLink="/about" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">About Us</a></li>-->
@@ -21,33 +21,18 @@
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle">ジョブ<i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/job-list" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">作業リスト</a></li>
-
-<!--                                <li class="nav-item"><a routerLink="/favourite-job" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Favourite Jobs</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/job-details" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Job Details</a></li>-->
-
-                                <li class="nav-item"><a routerLink="/post-a-job" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}" *ngIf="isLogin$ | async">求人を投稿する</a></li>
+                                <li class="nav-item"><a routerLink="/job-list" (click)="onResetData()"  class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">作業リスト</a></li>
+                                <li class="nav-item"><a routerLink="/post-a-job" (click)="onResetData()" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}" *ngIf="isLogin$ | async">求人を投稿する</a></li>
                             </ul>
                         </li>
 
-<!--                        <li class="nav-item">-->
-<!--                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Candidates <i class="icofont-simple-down"></i></a>-->
+                        <li class="nav-item" *ngIf="isLogin$ | async">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Candidates <i class="icofont-simple-down"></i></a>
 
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li class="nav-item"><a routerLink="/candidate-list" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Candidate List</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/candidate-details" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Candidate Details</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/single-resume" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Single Resume</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/submit-resume" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Submit Resume</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/pricing" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Pricing</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/dashboard" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Candidate dashboard</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a routerLink="/candidate-list" (click)="onResetData()" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Candidate List</a></li>
+                            </ul>
+                        </li>
 
 <!--                        <li class="nav-item">-->
 <!--                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Pages <i class="icofont-simple-down"></i></a>-->
