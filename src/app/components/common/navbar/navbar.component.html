@@ -25,10 +25,10 @@
                         </li>
 
                         <li class="nav-item" *ngIf="isLogin$ | async">
-                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Candidates <i class="icofont-simple-down"></i></a>
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">候補者<i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/candidate-list" (click)="onResetData()" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Candidate List</a></li>
+                                <li class="nav-item"><a routerLink="/candidate-list" (click)="onResetData()" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">候補者リスト</a></li>
                             </ul>
                         </li>
 

@@ -24,7 +24,7 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
     images = [];
 
     form: FormGroup;
-    files: any;
+    files: any[] = [];
     loading = false;
     subscribe: Subject<any> = new Subject<any>();
     @ViewChild('fileElement', { static: true }) fileElement: ElementRef;
@@ -73,6 +73,8 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
             .subscribe(
                 (res) => {
                     if (res) {
+                        this.loading = false;
+                        this.form.reset();
                         this.notifier.notify('success', '無事に適用されました');
                     }
                 },

@@ -90,7 +90,7 @@ export class HomeOneComponent implements OnInit, OnDestroy {
     goToJobDetail(job: IJob) {
         const navigationExtras: NavigationExtras = {
             state: {
-                job: job,
+                job,
             },
         };
         this.router.navigate([`/job-detail/${job.Id}`], navigationExtras);

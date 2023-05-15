@@ -833,6 +833,7 @@ button {
                         position: relative;
                         z-index: 1;
                         transition: $transition;
+                        cursor: pointer;
 
                         &:before {
                             position: absolute;
@@ -2200,6 +2201,7 @@ footer {
             padding-bottom: 14px;
             text-align: center;
             margin-right: 35px;
+            cursor: pointer;
 
             &:hover {
                 background: linear-gradient(270deg, #38a745 0%, #4cce5b 63%);
@@ -3143,6 +3145,10 @@ footer {
     &:hover {
         color: $white-color;
         background: linear-gradient(270deg, #38a745 0%, #4cce5b 63%);
+    }
+
+    &:disabled {
+        opacity: 0.5;
     }
 }
 /*-- End Job Details --*/

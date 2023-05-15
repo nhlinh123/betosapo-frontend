@@ -3,11 +3,11 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-text">
-                    <h2>Job Details</h2>
+                    <h2>仕事の詳細</h2>
                     <ul>
-                        <li><a routerLink="/">Home</a></li>
+                        <li><a routerLink="/">家</a></li>
                         <li><i class="icofont-simple-right"></i></li>
-                        <li>Job Details</li>
+                        <li>仕事の詳細</li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                             <h3>基本情報</h3>
 
                             <div class="create-information-btn">
-                                <a (click)="browser()">履歴書をアップロードしてください</a>
+                                <a (click)="browser()">履歴書をアップロードする</a>
                             </div>
 
                             <input #fileElement
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button class="job-details-btn" [disabled]="form.invalid && files?.length > 0 && loading" (click)="browser()">今すぐ申し込む</button>
+                                <button class="job-details-btn" [disabled]="form.invalid || files?.length === 0 || loading" (click)="apply()">今すぐ申し込む</button>
                             </div>
                         </form>
                     </div>
@@ -91,7 +91,7 @@
             <div class="col-lg-4">
                 <div class="job-details-item">
                     <div class="job-overview">
-                        <h3>Overview</h3>
+                        <h3>概要</h3>
 
                         <ul>
                             <li>

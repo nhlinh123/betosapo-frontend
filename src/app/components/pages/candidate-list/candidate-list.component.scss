@@ -1,0 +1,40 @@
+:host ::ng-deep {
+    .form-group {
+        .job-select {
+            .nice-select {
+                width: 100%;
+                display: block;
+                border-radius: 0;
+                height: 50px;
+                margin-bottom: 30px;
+
+                span.current {
+                    color: #dbdbdb;
+                    line-height: 50px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block;
+                }
+                .option {
+                    color: #dbdbdb;
+                    font-size: 13px;
+
+                    &:hover, &.focus, &.selected.focus {
+                        background: linear-gradient(90deg, rgba(56,167,69,1) 0%, rgba(76,206,91,1) 63%);;
+                        color: #ffffff;
+                    }
+                }
+            }
+            .nice-select.open .list {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.over-flow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -171,7 +171,7 @@
                 </div>
 
                 <div class="text-left">
-                    <button type="submit" [disabled]="loading || (form.invalid && !(myFiles.length > 0) && !(logoFile.length > 0))" (click)="createJob()" class="btn create-ac-btn">役職</button>
+                    <button type="submit" [disabled]="loading || form.invalid || !(myFiles.length > 0) || !(logoFile.length > 0)" (click)="createJob()" class="btn create-ac-btn">役職</button>
                 </div>
             </form>
         </div>

@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Injectable({
     providedIn: 'root',
 })
@@ -10,7 +11,7 @@ export class AuthService {
     private apiUrl = environment.API_URL;
     private path = 'api/auth';
     authentication$: BehaviorSubject<any> = new BehaviorSubject<any>(false);
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     login(email: string, password: string): Observable<any> {
         return this.http
@@ -44,5 +45,12 @@ export class AuthService {
 
     getUserInfo() {
         return sessionStorage.getItem('user');
+    }
+
+    checkToken() {
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            this.router.navigateByUrl('/login');
+        }
     }
 }

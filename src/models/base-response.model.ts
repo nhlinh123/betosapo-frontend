@@ -2,7 +2,7 @@ export class BaseResponse<T> {
     data?: T;
     status?: string;
     message?: string;
-    code?: string;
+    code?: number;
     total?: number;
     left: number;
     constructor(res: Partial<any>) {

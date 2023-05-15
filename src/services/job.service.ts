@@ -67,6 +67,34 @@ export class JobService {
         return this.http.post(`${this.apiUrl}/${this.path}/apply`, body);
     }
 
+    getAllJobs(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/${this.path}/getAllJobs`);
+    }
+
+    getAllApplied(jobId): Observable<any> {
+        return this.http
+            .post(`${this.apiUrl}/${this.path}/getAllApplied`, {
+                jobId,
+            })
+            .pipe(
+                map((rs: BaseResponse<any[]>) => {
+                    return {
+                        code: rs.code,
+                        data: rs.data.map((item) => {
+                            const path = item?.Path.replace(
+                                environment.pathRegex,
+                                this.apiUrl + '/'
+                            ).replace(/\\/g, '/');
+                            return {
+                                ...item,
+                                Path: path,
+                            };
+                        }),
+                    } as BaseResponse<any>;
+                })
+            );
+    }
+
     private transformJob(item: IJob) {
         const picturesString = item.PicturePath.replace(
             environment.pathRegex,

@@ -2,11 +2,6 @@
 
 <section class="job-area job-area-two pt-100">
     <div class="container">
-        <div class="row" *ngIf="left > 0">
-            <div class="col-12" style="display:flex; justify-content: center">
-                <span class="btn-view-mores" (click)="viewMore()">もっと見る</span>
-            </div>
-        </div>
         <div class="row">
             <ng-container *ngFor="let job of jobs">
                 <div class="col-lg-6 mix web ui">
@@ -35,5 +30,10 @@
             </ng-container>
         </div>
 
+        <div class="row mt-3" *ngIf="left > 0">
+            <div class="col-12" style="display:flex; justify-content: center">
+                <span class="btn-view-mores" (click)="viewMore()">もっと見る</span>
+            </div>
+        </div>
     </div>
 </section>
