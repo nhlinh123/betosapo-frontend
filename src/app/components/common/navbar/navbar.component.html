@@ -1,4 +1,4 @@
- <div class="navbar-area fixed-top">
+ <div class="navbar-area fixed-top" style="z-index: 999999 !important;">
 
     <div class="mobile-nav">
         <a routerLink="/" class="logo"><img src="assets/img/logo.png" alt="Logo"></a>
@@ -14,8 +14,6 @@
                         <li class="nav-item">
                             <a routerLink="/" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ホームページ</a>
                         </li>
-
-<!--                        <li class="nav-item"><a routerLink="/about" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">About Us</a></li>-->
 
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle">ジョブ<i class="icofont-simple-down"></i></a>

@@ -42,6 +42,7 @@ import { NiceSelectModule } from 'ng-nice-select';
 import { NotifierModule } from 'angular-notifier';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { HeaderComponent } from './components/common/header/header.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
     declarations: [
@@ -87,6 +88,7 @@ import { HeaderComponent } from './components/common/header/header.component';
         FormsModule,
         NotifierModule,
         TooltipModule,
+        IvyCarouselModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

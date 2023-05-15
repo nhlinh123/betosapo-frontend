@@ -20,39 +20,70 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="job-details-item">
-                    <div class="job-description">
-                        <h2>Job Description</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit magnam sapiente dolor quos expedita quis, ad perspiciatis hic nihil laboriosam at eius.</p>
+                    <h1>{{job?.Title}}</h1>
+
+                    <div class="job-description mt-3 mb-3">
+                        <h2>仕事内容</h2>
+                        <p>{{job?.Description}}</p>
                     </div>
 
-                    <div class="job-knowledge">
-                        <h2>Required Knowledge, Skills, and Abilities</h2>
-
-                        <ul>
-                            <li><i class="icofont-hand-drawn-right"></i> Hand On experience with Wordpress</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Better knowledge of front-end technologies, including HTML5, CSS3, JavaScript, jQuery</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Belief – believing in yourself and those around you</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Experience designing and developing responsive design websites</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Ability to convert comprehensive layout and wireframes into working HTML pages</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Strong understanding of PHP back-end development</li>
-                        </ul>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="companies-area ptb-100">
+                                <div class="container">
+                                    <carousel [images]="images"
+                                              [objectFit]="'cover'"
+                                              [autoplay]="true"
+                                              [dots]="true"
+                                              [cellsToScroll]="3"
+                                              [loop]="true">
+                                    </carousel>
+                                </div>
+                            </section>
+                        </div>
                     </div>
+                    <div class="create-information mt-3">
+                        <form [formGroup]="form">
+                            <h3>基本情報</h3>
 
-                    <div class="job-knowledge">
-                        <h2>Education Qualification</h2>
+                            <div class="create-information-btn">
+                                <a (click)="browser()">履歴書をアップロードしてください</a>
+                            </div>
 
-                        <ul>
-                            <li><i class="icofont-hand-drawn-right"></i> Any Graduattion Degree(13th Pass) (Preferred)</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Advanced degree or equivalent experience in graphic and web design</li>
-                            <li><i class="icofont-hand-drawn-right"></i> 2 or more years of professional design experience</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Direct response email experience</li>
-                            <li><i class="icofont-hand-drawn-right"></i> Ecommerce website design experience</li>
-                        </ul>
-                    </div>
+                            <input #fileElement
+                                   hidden
+                                   type="file"
+                                   [accept]="'.pdf, .docx, .png, .jpg, .jpeg'"
+                                   class="form-control"
+                                   style="padding-top: 11px;"
+                                   (change)="uploadCV($event)">
 
-                    <div class="text-center">
-                        <a class="job-details-btn" routerLink="/create-account">Apply Now</a>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>あなたのフルネーム</label>
+                                        <input formControlName="fullName" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>あなたのメールアドレス</label>
+                                        <input formControlName="email" type="email" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>あなたの電話</label>
+                                        <input formControlName="phoneNumber" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="job-details-btn" [disabled]="form.invalid && files?.length > 0 && loading" (click)="browser()">今すぐ申し込む</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -65,26 +96,26 @@
                         <ul>
                             <li>
                                 <i class="icofont-dollar"></i>
-                                <p>Offered Salary</p>
-                                <span>$10k-$150k</span>
+                                <p>提示された給与</p>
+                                <span>{{job?.Salary}}</span>
                             </li>
 
                             <li>
                                 <i class="icofont-users-alt-3"></i>
-                                <p>Gender</p>
-                                <span>Male</span>
+                                <p>量</p>
+                                <span>{{job?.Number}}</span>
                             </li>
 
                             <li>
-                                <i class="icofont-badge"></i>
-                                <p>Experince</p>
-                                <span>2 Years</span>
+                                <i class="icofont-briefcase"></i>
+                                <p>位置</p>
+                                <span>{{job?.Position}}</span>
                             </li>
 
                             <li>
-                                <i class="icofont-graduate"></i>
-                                <p>Qualification</p>
-                                 <span>Master Degree</span>
+                                <i class="icofont-briefcase-2"></i>
+                                <p>位置</p>
+                                <span>{{job?.JobType}}</span>
                             </li>
                         </ul>
                     </div>
@@ -95,18 +126,14 @@
                         <ul>
                             <li>
                                 <i class="icofont-location-pin"></i>
+                                <span>{{job?.CompanyName}}</span>
+                            </li>
+
+                            <li>
+                                <i class="icofont-location-pin"></i>
                                 <span>{{job?.Location}}</span>
                             </li>
 
-<!--                            <li>-->
-<!--                                <i class="icofont-ui-call"></i>-->
-<!--                                <a href="tel:+07554332322">Call : +07 554 332 322</a>-->
-<!--                            </li>-->
-
-<!--                            <li>-->
-<!--                                <i class="icofont-ui-email"></i>-->
-<!--                                <a href="mailto:hello@peof.com">hello@peof.com</a>-->
-<!--                            </li>-->
                         </ul>
                     </div>
                 </div>

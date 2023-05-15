@@ -63,6 +63,10 @@ export class JobService {
             );
     }
 
+    apply(body): Observable<any> {
+        return this.http.post(`${this.apiUrl}/${this.path}/apply`, body);
+    }
+
     private transformJob(item: IJob) {
         const picturesString = item.PicturePath.replace(
             environment.pathRegex,
