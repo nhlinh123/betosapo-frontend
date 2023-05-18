@@ -39,7 +39,7 @@ export class CandidateListComponent implements OnInit {
             .getAllJobs()
             .pipe(
                 tap((rs: BaseResponse<any[]>) => {
-                    if (rs.code === 200) {
+                    if (rs) {
                         this.jobs = rs.data;
                     }
                 }),
@@ -54,7 +54,7 @@ export class CandidateListComponent implements OnInit {
             .getAllApplied(jobId)
             .pipe(
                 tap((rs: BaseResponse<any[]>) => {
-                    if (rs.code === 200) {
+                    if (rs) {
                         this.applieds = rs.data;
                         console.log(this.applieds);
                     }
