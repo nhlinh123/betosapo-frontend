@@ -46,8 +46,8 @@
                         <form [formGroup]="form">
                             <h3>基本情報</h3>
 
-                            <div class="row">
-                                <div class="col-6">
+                            <div class="d-flex">
+                                <div>
                                     <div class="create-information-btn">
                                         <a (click)="browser()">履歴書をアップロードする</a>
                                     </div>
@@ -151,7 +151,7 @@
                         <ul>
 
                             <li>
-                                <i class="icofont-location-pin"></i>
+                                <i class="location-pin icofont-location-pin"></i>
                                 <span>
                                     <div>{{job?.CompanyName}}</div>
                                     <div>{{job?.Location}}</div>
