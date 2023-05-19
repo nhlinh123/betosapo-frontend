@@ -81,10 +81,12 @@ export class JobService {
                     return {
                         code: rs.code,
                         data: rs.data.map((item) => {
+                            console.log(item?.Path);
                             const path = item?.Path.replace(
                                 environment.pathRegex,
                                 this.apiUrl + '/'
                             ).replace(/\\/g, '/');
+                            console.log(path);
                             return {
                                 ...item,
                                 Path: path,
