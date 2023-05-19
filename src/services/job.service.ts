@@ -83,7 +83,7 @@ export class JobService {
                         data: rs.data.map((item) => {
                             console.log(item?.Path);
                             const path = item?.Path.replace(
-                                environment.pathRegex,
+                                environment.path,
                                 this.apiUrl + '/'
                             ).replace(/\\/g, '/');
                             console.log(path);
@@ -99,7 +99,7 @@ export class JobService {
 
     private transformJob(item: IJob) {
         const picturesString = item.PicturePath.replace(
-            environment.pathRegex,
+            environment.path,
             this.apiUrl + '/'
         ).replace(/\\/g, '/');
         const pictureArray = picturesString.split(',');

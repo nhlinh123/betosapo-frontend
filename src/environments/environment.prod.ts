@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+    production: true,
+    API_URL: 'https://betosapo.com',
+    path: '/var/www/',
+    pathRegex: /var\\www\\/g,
 };

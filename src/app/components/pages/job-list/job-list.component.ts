@@ -37,7 +37,7 @@ export class JobListComponent implements OnInit, OnDestroy {
 
     initData() {
         const body = this.getBody(
-            this.dataStore.searchText ?? '',
+            this.dataStore.searchText.trim() ?? '',
             this.dataStore.categoryId ?? 0,
             this.limit,
             0

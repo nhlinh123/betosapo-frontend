@@ -4,9 +4,9 @@
 
 export const environment = {
     production: false,
-    API_URL: 'https://betosapo.com',
-    path: '/var/www/',
-    pathRegex: /var\\www\\/g,
+    API_URL: 'http://localhost:3000',
+    path: 'C:/Works/betosapo-api/src/',
+    pathRegex: /C:\\Works\\betosapo-api\\src\\/g,
 };
 
 /*
