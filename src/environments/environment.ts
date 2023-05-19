@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    API_URL: 'http://5.104.80.197/api',
+    API_URL: 'http://5.104.80.197',
     path: 'C:/Works/betosapo-api/src/',
     pathRegex: /C:\\Works\\betosapo-api\\src\\/g,
 };
