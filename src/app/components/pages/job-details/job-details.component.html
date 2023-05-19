@@ -5,7 +5,7 @@
                 <div class="page-title-text">
                     <h2>仕事の詳細</h2>
                     <ul>
-                        <li><a routerLink="/">家</a></li>
+                        <li><a routerLink="/">ホームページ</a></li>
                         <li><i class="icofont-simple-right"></i></li>
                         <li>仕事の詳細</li>
                     </ul>
@@ -46,8 +46,24 @@
                         <form [formGroup]="form">
                             <h3>基本情報</h3>
 
-                            <div class="create-information-btn">
-                                <a (click)="browser()">履歴書をアップロードする</a>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="create-information-btn">
+                                        <a (click)="browser()">履歴書をアップロードする</a>
+                                    </div>
+                                </div>
+                                <div class="col-6" *ngIf="files.length > 0">
+                                    <ng-container *ngFor="let file of files; let i = index">
+                                        <div class="row">
+                                            <span class="col-6 over-flow" style="min-width: 400px;margin-top:10px">{{file.name}}</span>
+                                            <span class="col-6">
+                                                <a *ngIf="i" (click)="onDeleteFile(i)" class="cursor-pointer">
+                                                    <i class="icofont-ui-remove"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </ng-container>
+                                </div>
                             </div>
 
                             <input #fileElement
@@ -63,6 +79,9 @@
                                     <div class="form-group">
                                         <label>あなたのフルネーム</label>
                                         <input formControlName="fullName" type="text" class="form-control">
+                                        <a *ngIf="form.get('fullName').touched && form.get('fullName').invalid" class="error-text">
+                                            すべての情報を入力してください
+                                        </a>
                                     </div>
                                 </div>
 
@@ -70,6 +89,9 @@
                                     <div class="form-group">
                                         <label>あなたのメールアドレス</label>
                                         <input formControlName="email" type="email" class="form-control">
+                                        <a *ngIf="form.get('email').touched && form.get('email').invalid" class="error-text">
+                                            正しい形式で入力してください: abc@xyz.jp
+                                        </a>
                                     </div>
                                 </div>
 
@@ -77,6 +99,9 @@
                                     <div class="form-group">
                                         <label>あなたの電話</label>
                                         <input formControlName="phoneNumber" type="text" class="form-control">
+                                        <a *ngIf="form.get('phoneNumber').touched && form.get('phoneNumber').invalid" class="error-text">
+                                            すべての情報を入力してください
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +139,7 @@
 
                             <li>
                                 <i class="icofont-briefcase-2"></i>
-                                <p>位置</p>
+                                <p>タイプ</p>
                                 <span>{{job?.JobType}}</span>
                             </li>
                         </ul>
@@ -124,14 +149,13 @@
                         <h3>住所</h3>
 
                         <ul>
-                            <li>
-                                <i class="icofont-location-pin"></i>
-                                <span>{{job?.CompanyName}}</span>
-                            </li>
 
                             <li>
                                 <i class="icofont-location-pin"></i>
-                                <span>{{job?.Location}}</span>
+                                <span>
+                                    <div>{{job?.CompanyName}}</div>
+                                    <div>{{job?.Location}}</div>
+                                </span>
                             </li>
 
                         </ul>

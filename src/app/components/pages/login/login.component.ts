@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
     selector: 'app-login',
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
     form: FormGroup;
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        private notifier: NotifierService
+    ) {}
 
     ngOnInit(): void {
         this.initFormGroup();
@@ -33,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(email, password).subscribe((res) => {
             if (res) {
                 this.router.navigateByUrl('/');
+                this.notifier.notify('success', '正常にログインしました!');
             }
         });
     }

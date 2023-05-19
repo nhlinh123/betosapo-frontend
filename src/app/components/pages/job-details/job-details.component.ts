@@ -75,6 +75,7 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
                     if (res) {
                         this.loading = false;
                         this.form.reset();
+                        this.files = [];
                         this.notifier.notify('success', '無事に適用されました');
                     }
                 },
@@ -105,8 +106,18 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
     private initForm() {
         this.form = new FormGroup({
             fullName: new FormControl(null, [Validators.required]),
-            email: new FormControl(null, [Validators.required]),
-            phoneNumber: new FormControl(null, [Validators.required]),
+            email: new FormControl(null, [
+                Validators.required,
+                Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'),
+            ]),
+            phoneNumber: new FormControl(null, [
+                Validators.required,
+                Validators.pattern('^[0-9]*$'),
+            ]),
         });
+    }
+
+    onDeleteFile(i: number) {
+        this.files.splice(i, 1);
     }
 }

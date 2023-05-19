@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     searchText: string = '';
     category: number;
     subscribe: Subject<any> = new Subject<any>();
+    JOB_LIST = '/job-list';
+    isJobList: boolean = false;
 
     @Input() categories: any[];
     @Output() triggerSearch: Subject<any> = new Subject<any>();
@@ -32,6 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.searchText = this.dataStore.searchText;
         if (this.dataStore.categoryId && this.dataStore.categoryId !== 0)
             this.category = this.dataStore.categoryId;
+        this.isJobList = this.router.url === this.JOB_LIST;
+        console.log(this.isJobList);
     }
     ngOnDestroy(): void {
         this.subscribe.complete();
@@ -43,7 +47,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.categories = categories;
             return;
         }
-        loading();
         this.categoryService
             .getAll()
             .pipe(
@@ -57,8 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                     sessionStorage.setItem('categories', JSON.stringify(cate));
                     this.categories = cate;
                 }),
-                takeUntil(this.subscribe),
-                finalize(() => unloading())
+                takeUntil(this.subscribe)
             )
             .subscribe();
     }

@@ -28,6 +28,9 @@
                         <div class="form-group">
                             <label>タイトル</label>
                             <input type="text" formControlName="title" class="form-control" placeholder="福都レストランではウェイターを募集しています">
+                            <a *ngIf="form.get('title').touched && form.get('title').invalid" class="error-text">
+                                すべての情報を入力してください
+                            </a>
                         </div>
                     </div>
 
@@ -46,6 +49,9 @@
                         <div class="form-group">
                             <label>会社名</label>
                             <input type="text" formControlName="companyName" class="form-control" placeholder="福東食堂">
+                            <a *ngIf="form.get('companyName').touched && form.get('companyName').invalid" class="error-text">
+                                すべての情報を入力してください
+                            </a>
                         </div>
                     </div>
 
@@ -54,6 +60,9 @@
                             <div class="job-currency-area">
                                 <label>給料</label>
                                 <input type="text" formControlName="salary" class="form-control" placeholder="upto 1000$">
+                                <a *ngIf="form.get('salary').touched && form.get('salary').invalid" class="error-text">
+                                    すべての情報を入力してください
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -62,6 +71,9 @@
                         <div class="form-group">
                             <label>就業者数</label>
                             <input type="number" formControlName="number" class="form-control" placeholder="10">
+                            <a *ngIf="form.get('number').touched && form.get('number').invalid" class="error-text">
+                                すべての情報を入力してください
+                            </a>
                         </div>
                     </div>
 
@@ -69,6 +81,9 @@
                         <div class="form-group">
                             <label>住所</label>
                             <input type="text" formControlName="location" class="form-control" placeholder="210-27 Quadra, Market Street, Victoria Canada">
+                            <a *ngIf="form.get('location').touched && form.get('location').invalid" class="error-text">
+                                すべての情報を入力してください
+                            </a>
                         </div>
                     </div>
 
@@ -107,6 +122,9 @@
                         <div class="form-group">
                             <label>位置</label>
                             <input type="text" formControlName="position" class="form-control" placeholder="受付係">
+                            <a *ngIf="form.get('position').touched && form.get('position').invalid" class="error-text">
+                                すべての情報を入力してください
+                            </a>
                         </div>
                     </div>
 
@@ -114,6 +132,9 @@
                         <div class="form-group">
                             <label>説明</label>
                             <textarea formControlName="description" id="your_message" rows="8" class="form-control"></textarea>
+                            <a *ngIf="form.get('description').touched && form.get('description').invalid" class="error-text">
+                                すべての情報を入力してください
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-6">

@@ -3,16 +3,26 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="banner-text">
-                    <h1><span>希望</span>の仕事を見つける</h1>
-                    <p>仕事、雇用、将来のキャリアの機会</p>
+                    <h1 *ngIf="!isJobList"><span>希望</span>の仕事を見つける</h1>
+                    <p *ngIf="!isJobList">仕事、雇用、将来のキャリアの機会</p>
+                    <div class="container" *ngIf="isJobList" style="margin-bottom: 5rem;">
+                        <div class="page-title-text">
+                            <h2>候補者リスト</h2>
+                            <ul>
+                                <li><a routerLink="/">ホームページ</a></li>
+                                <li><i class="icofont-simple-right"></i></li>
+                                <li>ジョブリスト</li>
+                            </ul>
+                        </div>
+                    </div>
 
                     <div class="banner-form-area">
                         <form>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="form-group">
-                                        <label><i class="icofont-search-1" style="cursor: pointer" (click)="search()"></i></label>
-                                        <input type="text" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="タイトル">
+<!--                                        <label><i class="icofont-search-1" style="cursor: pointer" (click)="search()"></i></label>-->
+                                        <input type="text" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="どのような仕事を探していますか?">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">

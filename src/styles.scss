@@ -90,8 +90,9 @@ button {
         padding-bottom: 0;
 
         .navbar-nav {
-            margin-left: auto;
+            //margin-left: auto;
             margin-right: auto;
+            margin-left: 3rem;
 
             .nav-item {
                 transition: $transition;
@@ -225,6 +226,7 @@ button {
 .banner-img-one {
     background-image: url('https://peof-ng.hibootstrap.com/banner.jpg');
 }
+
 .banner-area {
     background-size: cover;
     background-position: center center;
@@ -647,7 +649,7 @@ button {
 /*-- Jobs --*/
 .section-title {
     text-align: center;
-    margin-bottom: 40px;
+    //margin-bottom: 40px;
     margin-top: -10px;
 
     h2 {
@@ -724,6 +726,8 @@ button {
 .job-item {
     margin-bottom: 30px;
     border: 1px solid #c1c1c1;
+    border-radius: 5px;
+    background: #f2fbf6;
     padding: 30px;
     position: relative;
 
@@ -731,13 +735,13 @@ button {
         position: absolute;
         top: 26%;
         left: 4%;
-        height: 70px;
-        width: 70px;
+        height: 6rem;
+        width: 6rem;
     }
     .job-inner {
         display: flex;
         flex-wrap: wrap;
-        padding-left: 80px;
+        padding-left: 7rem;
 
         .job-inner-left {
             flex: 0 0 75%;
@@ -1455,6 +1459,7 @@ button {
     padding-bottom: 60px;
     position: relative;
     top: -100px;
+    border-radius: 5px;
 
     .subscribe-shape {
         img {
@@ -4249,10 +4254,18 @@ footer {
 
 .error-text {
     color: red;
+    font-size: 9px;
 }
 
 .no-data {
     padding: 1rem;
     background: #d5f5d5;
 }
+
+.over-flow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*----- End Back To Top -----*/
