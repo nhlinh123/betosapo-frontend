@@ -1,4 +1,4 @@
-:host ::ng-deep {
+::ng-deep {
     .form-group {
         .job-select {
             .nice-select {
@@ -19,6 +19,7 @@
                 .option {
                     color: #dbdbdb;
                     font-size: 13px;
+                    max-width: 388px;
 
                     &:hover, &.focus, &.selected.focus {
                         background: linear-gradient(90deg, rgba(56,167,69,1) 0%, rgba(76,206,91,1) 63%);;
