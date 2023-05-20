@@ -98,6 +98,7 @@
     $('body').append(
         '<div id="toTop" class="back-to-top-btn"><i class="icofont-dotted-up"></i></div>'
     );
+    let lastScrollTop = 0;
     $(window).scroll(function () {
         if ($(this).scrollTop() != 0) {
             $('#toTop').fadeIn();
@@ -105,18 +106,17 @@
             $('#toTop').fadeOut();
         }
 
-        var previousScroll = 0;
-        var currentScroll = $(this).scrollTop();
-
-        if (currentScroll > previousScroll) {
-            // Scrolling downwards
-            console.log('Scrolling down');
+        var st = $(this).scrollTop();
+        if (st > lastScrollTop) {
+            // downscroll code
             $('#navbarSupportedContent').css('margin-top', '30px');
+            console.log('Scrolling down');
         } else {
-            // Scrolling upwards
+            // upscroll code
             $('#navbarSupportedContent').css('margin-top', '0px');
             console.log('Scrolling up');
         }
+        lastScrollTop = st;
     });
     $('#toTop').on('click', function () {
         $('html, body').animate({ scrollTop: 0 }, 900);

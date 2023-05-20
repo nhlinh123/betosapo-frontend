@@ -9,6 +9,9 @@
     .navbar-brand {
         display: none;
     }
+    .main-nav nav .navbar-nav .nav-item a {
+        font-size: 13px !important;
+    }
     .navbar-expand-md .navbar-collapse {
         display: flex!important;
         flex-basis: auto;
@@ -16,6 +19,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .main-nav nav .navbar-nav .nav-item a {
+        font-size: 15px;
+    }
 
     $all-size: 14px;
     body {
