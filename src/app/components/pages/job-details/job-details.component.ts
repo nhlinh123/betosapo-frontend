@@ -111,7 +111,7 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
         this.job = job;
         this.images = job?.PicturePath.map((path) => {
             return {
-                path,
+                path: this.jobService.replace(path),
             };
         });
     }

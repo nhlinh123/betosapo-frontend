@@ -29,14 +29,16 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <section class="companies-area ptb-100">
+                            <section class="companies-area" style="padding: 50px 0;">
                                 <div class="container">
                                     <carousel [images]="images"
-                                              [objectFit]="'cover'"
+                                              [cellsToShow]="1"
+                                              [loop]="true"
                                               [autoplay]="true"
-                                              [dots]="true"
-                                              [cellsToScroll]="3"
-                                              [loop]="true">
+                                              [objectFit]="'contain'"
+                                              [height]="400"
+                                              [autoplayInterval]="3000"
+                                    >
                                     </carousel>
                                 </div>
                             </section>

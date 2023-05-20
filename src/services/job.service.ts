@@ -98,10 +98,7 @@ export class JobService {
     }
 
     private transformJob(item: IJob) {
-        const picturesString = item.PicturePath.replace(
-            environment.path,
-            this.apiUrl + '/'
-        ).replace(/\\/g, '/');
+        const picturesString = this.replace(item.PicturePath);
         const pictureArray = picturesString.split(',');
         return {
             ...item,
@@ -110,5 +107,11 @@ export class JobService {
             JobType:
                 item?.JobType === 'FULLTIME' ? 'フルタイム' : 'パートタイム',
         };
+    }
+
+    replace(path) {
+        return path
+            .replace(environment.path, this.apiUrl + '/')
+            .replace(/\\/g, '/');
     }
 }
