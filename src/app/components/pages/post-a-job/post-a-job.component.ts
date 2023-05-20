@@ -52,32 +52,16 @@ export class PostAJobComponent implements OnInit, OnDestroy {
 
     initForm() {
         this.form = new FormGroup({
-            title: new FormControl(null, [
-                Validators.required,
-                Validators.max(255),
-            ]),
-            description: new FormControl(null, [
-                Validators.required,
-                Validators.max(2000),
-            ]),
-            companyName: new FormControl(null, [
-                Validators.required,
-                Validators.max(500),
-            ]),
-            location: new FormControl(null, [
-                Validators.required,
-                Validators.max(500),
-            ]),
+            title: new FormControl(null, [Validators.required]),
+            description: new FormControl(null, [Validators.required]),
+            companyName: new FormControl(null, [Validators.required]),
+            location: new FormControl(null, [Validators.required]),
             salary: new FormControl(null, [Validators.required]),
             number: new FormControl(null, [
                 Validators.required,
                 Validators.pattern('^[0-9]*$'),
-                Validators.max(50),
             ]),
-            position: new FormControl(null, [
-                Validators.required,
-                Validators.max(50),
-            ]),
+            position: new FormControl(null, [Validators.required]),
             categoryId: new FormControl(null, [Validators.required]),
         });
     }
