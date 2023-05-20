@@ -73,7 +73,7 @@
 
                     <div class="common-btn">
                         <a class="login-btn" routerLink="/login" *ngIf="!(isLogin$ | async)"><i class="icofont-login"></i>雇用者</a>
-                        <a class="login-btn" (click)="logout()" *ngIf="isLogin$ | async"><i class="icofont-logout"></i>ログアウト</a>
+                        <a class="login-btn" style="cursor: pointer" (click)="logout()" *ngIf="isLogin$ | async"><i class="icofont-logout"></i>ログアウト</a>
 <!--                        <a class="sign-up-btn" routerLink="/create-account"><i class="icofont-user-alt-4"></i> Sign Up</a>-->
                     </div>
                 </div>

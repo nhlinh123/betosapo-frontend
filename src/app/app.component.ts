@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     constructor(private router: Router, private authService: AuthService) {}
 
     ngOnInit() {
-        this.recallJsFuntions();
+        // this.recallJsFuntions();
         const token = sessionStorage.getItem('token');
         if (token) {
             const helper = new JwtHelperService();
