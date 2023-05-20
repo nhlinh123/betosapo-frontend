@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     constructor(private router: Router, private authService: AuthService) {}
 
     ngOnInit() {
-        // this.recallJsFuntions();
+        this.recallJsFuntions();
         const token = sessionStorage.getItem('token');
         if (token) {
             const helper = new JwtHelperService();
@@ -63,7 +63,6 @@ export class AppComponent implements OnInit {
             )
             .subscribe((event) => {
                 $.getScript('../assets/js/custom.js');
-                $('.loader').fadeOut('slow');
                 this.location = this.router.url;
                 if (!(event instanceof NavigationEnd)) {
                     return;

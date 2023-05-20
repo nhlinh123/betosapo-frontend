@@ -3,6 +3,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { unloading } from '../../../../constants/function.constant';
 
 @Component({
     selector: 'app-login',
@@ -31,16 +32,32 @@ export class LoginComponent implements OnInit {
                 Validators.pattern('^[a-zA-Z0-9]{6,30}$'),
             ]),
         });
+        unloading();
     }
 
     login() {
         const { email, password } = this.form.getRawValue();
-        this.authService.login(email, password).subscribe((res) => {
-            if (res) {
-                this.router.navigateByUrl('/');
-                this.notifier.notify('success', '正常にログインしました!');
+        this.authService.login(email, password).subscribe(
+            (res) => {
+                if (res) {
+                    this.router.navigateByUrl('/');
+                    this.notifier.notify('success', '正常にログインしました!');
+                }
+            },
+            (err) => {
+                if (err?.error?.message.includes('was not found')) {
+                    this.notifier.notify(
+                        'error',
+                        'メールアドレスが存在しません。もう一度お試しください。'
+                    );
+                } else {
+                    this.notifier.notify(
+                        'error',
+                        'エラーが発生しました。もう一度やり直してください！'
+                    );
+                }
             }
-        });
+        );
     }
 
     isFormInValid(controlName: string) {
