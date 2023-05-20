@@ -309,7 +309,4 @@ a.meanmenu-reveal {
     .mobile-nav nav .navbar-nav .nav-item a i {
         display: none;
     }
-    .main-nav {
-        display: none !important;
-    }
 }

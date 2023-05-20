@@ -1,15 +1,11 @@
  <div class="navbar-area fixed-top" style="z-index: 999999 !important;">
 
-    <div class="mobile-nav">
-        <a routerLink="/" (click)="onResetData()" class="logo"><img src="assets/img/logo.png" alt="Logo"></a>
-    </div>
-
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a routerLink="/" (click)="onResetData()" class="navbar-brand"><img src="assets/img/logo.png" alt="Logo"></a>
 
-                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a routerLink="/" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ホームページ</a>
@@ -73,7 +69,7 @@
 
                     <div class="common-btn">
                         <a class="login-btn" routerLink="/login" *ngIf="!(isLogin$ | async)"><i class="icofont-login"></i>雇用者</a>
-                        <a class="login-btn" style="cursor: pointer" (click)="logout()" *ngIf="isLogin$ | async"><i class="icofont-logout"></i>ログアウト</a>
+                        <a class="sign-up-btn" style="cursor: pointer" (click)="logout()" *ngIf="isLogin$ | async"><i class="icofont-logout"></i>ログアウト</a>
 <!--                        <a class="sign-up-btn" routerLink="/create-account"><i class="icofont-user-alt-4"></i> Sign Up</a>-->
                     </div>
                 </div>
