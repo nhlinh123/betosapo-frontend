@@ -68,10 +68,7 @@ export class PostAJobComponent implements OnInit, OnDestroy {
                 Validators.required,
                 Validators.max(500),
             ]),
-            salary: new FormControl(null, [
-                Validators.required,
-                Validators.max(50),
-            ]),
+            salary: new FormControl(null, [Validators.required]),
             number: new FormControl(null, [
                 Validators.required,
                 Validators.pattern('^[0-9]*$'),

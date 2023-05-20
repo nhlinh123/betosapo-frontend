@@ -60,7 +60,7 @@
                             <div class="job-currency-area">
                                 <label>給料</label>
                                 <input type="text" maxlength="50" formControlName="salary" class="form-control" placeholder="upto 1000$">
-                                <a *ngIf="form.get('salary').touched && form.get('salary').invalid" class="error-text">
+                                <a *ngIf="form.get('salary').touched && form.get('salary').hasError('required')" class="error-text">
                                     すべての情報を入力してください
                                 </a>
                             </div>
