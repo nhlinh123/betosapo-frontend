@@ -70,12 +70,12 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>就業者数</label>
-                            <input type="number" maxlength="50" formControlName="number" class="form-control" placeholder="10">
+                            <input type="text" maxlength="50" formControlName="number" class="form-control" placeholder="10">
                             <a *ngIf="form.get('number').touched && form.get('number').hasError('required')" class="error-text">
                                 すべての情報を入力してください
                             </a>
                             <a *ngIf="form.get('number').touched && form.get('number').hasError('pattern')" class="error-text">
-                                すべての情報を入力してください
+                                正しい形式を入力してください。
                             </a>
                         </div>
                     </div>
