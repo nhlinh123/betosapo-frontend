@@ -28,71 +28,71 @@
     $('select').niceSelect();
 
     // Companies Slider JS
-    $('.companies-slider').owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: false,
-        dots: true,
-        smartSpeed: 1000,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        autoplayHoverPause: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 4,
-            },
-        },
-    });
-
-    // Profile Slider JS
-    $('.profile-slider').owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: false,
-        dots: true,
-        smartSpeed: 1000,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        autoplayHoverPause: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 4,
-            },
-        },
-    });
+    // $('.companies-slider').owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     nav: false,
+    //     dots: true,
+    //     smartSpeed: 1000,
+    //     autoplay: true,
+    //     autoplayTimeout: 4000,
+    //     autoplayHoverPause: true,
+    //     responsive: {
+    //         0: {
+    //             items: 1,
+    //         },
+    //         600: {
+    //             items: 2,
+    //         },
+    //         1000: {
+    //             items: 4,
+    //         },
+    //     },
+    // });
+    //
+    // // Profile Slider JS
+    // $('.profile-slider').owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     nav: false,
+    //     dots: true,
+    //     smartSpeed: 1000,
+    //     autoplay: true,
+    //     autoplayTimeout: 4000,
+    //     autoplayHoverPause: true,
+    //     responsive: {
+    //         0: {
+    //             items: 1,
+    //         },
+    //         600: {
+    //             items: 2,
+    //         },
+    //         1000: {
+    //             items: 4,
+    //         },
+    //     },
+    // });
 
     // Wow JS
     new WOW().init();
 
     // Accordion JS
-    $('.accordion > li:eq(0) a').addClass('active').next().slideDown();
-    $('.accordion a').on('click', function (j) {
-        var dropDown = $(this).closest('li').find('p');
-        $(this).closest('.accordion').find('p').not(dropDown).slideUp(300);
-        if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-        } else {
-            $(this)
-                .closest('.accordion')
-                .find('a.active')
-                .removeClass('active');
-            $(this).addClass('active');
-        }
-        dropDown.stop(false, true).slideToggle(300);
-        j.preventDefault();
-    });
+    // $('.accordion > li:eq(0) a').addClass('active').next().slideDown();
+    // $('.accordion a').on('click', function (j) {
+    //     var dropDown = $(this).closest('li').find('p');
+    //     $(this).closest('.accordion').find('p').not(dropDown).slideUp(300);
+    //     if ($(this).hasClass('active')) {
+    //         $(this).removeClass('active');
+    //     } else {
+    //         $(this)
+    //             .closest('.accordion')
+    //             .find('a.active')
+    //             .removeClass('active');
+    //         $(this).addClass('active');
+    //     }
+    //     dropDown.stop(false, true).slideToggle(300);
+    //     j.preventDefault();
+    // });
 
     // Back to top
     $('body').append(
@@ -105,23 +105,9 @@
         } else {
             $('#toTop').fadeOut();
         }
-
-        if ($(window).width() < 768) {
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop) {
-                // downscroll code
-                $('#navbarSupportedContent').css('margin-top', '30px');
-                console.log('Scrolling down');
-            } else {
-                // upscroll code
-                $('#navbarSupportedContent').css('margin-top', '0px');
-                console.log('Scrolling up');
-            }
-            lastScrollTop = st;
-        }
     });
     $('#toTop').on('click', function () {
-        $('html, body').animate({ scrollTop: 0 }, 900);
+        $('html, body').animate({ scrollTop: 0 }, 300);
         return false;
     });
 })(jQuery);

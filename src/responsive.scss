@@ -5,6 +5,7 @@
     .navbar-nav {
         flex-direction: row;
         margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     .navbar-brand {
         display: none;
@@ -632,6 +633,7 @@
     /*----- Back To Top -----*/
     #toTop {
         bottom: 95px;
+        right: 5rem;
     }
     .back-to-top-btn {
         i {
