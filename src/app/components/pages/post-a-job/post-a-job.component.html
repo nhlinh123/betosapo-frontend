@@ -124,7 +124,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>位置</label>
-                            <input type="text" formControlName="position" class="form-control" placeholder="受付係">
+                            <input type="text" maxlength="50" formControlName="position" class="form-control" placeholder="受付係">
                             <a *ngIf="form.get('position').touched && form.get('position').invalid" class="error-text">
                                 すべての情報を入力してください
                             </a>
