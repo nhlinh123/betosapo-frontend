@@ -106,17 +106,19 @@
             $('#toTop').fadeOut();
         }
 
-        var st = $(this).scrollTop();
-        if (st > lastScrollTop) {
-            // downscroll code
-            $('#navbarSupportedContent').css('margin-top', '30px');
-            console.log('Scrolling down');
-        } else {
-            // upscroll code
-            $('#navbarSupportedContent').css('margin-top', '0px');
-            console.log('Scrolling up');
+        if ($(window).width() < 768) {
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop) {
+                // downscroll code
+                $('#navbarSupportedContent').css('margin-top', '30px');
+                console.log('Scrolling down');
+            } else {
+                // upscroll code
+                $('#navbarSupportedContent').css('margin-top', '0px');
+                console.log('Scrolling up');
+            }
+            lastScrollTop = st;
         }
-        lastScrollTop = st;
     });
     $('#toTop').on('click', function () {
         $('html, body').animate({ scrollTop: 0 }, 900);
