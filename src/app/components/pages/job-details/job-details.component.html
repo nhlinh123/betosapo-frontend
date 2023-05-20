@@ -27,7 +27,7 @@
                         <p>{{job?.Description}}</p>
                     </div>
 
-                    <div class="row">
+                    <div class="row" *ngIf="images.length > 0">
                         <div class="col-lg-12">
                             <section class="companies-area" style="padding: 50px 0;">
                                 <div class="container">
@@ -60,7 +60,7 @@
                                             <span class="col-6 over-flow" style="min-width: 400px;margin-top:10px">{{file.name}}</span>
                                             <span class="col-6">
                                                 <a *ngIf="i" (click)="onDeleteFile(i)" class="cursor-pointer">
-                                                    <i class="icofont-ui-remove"></i>
+                                                    <i class="icofont-ui-close"></i>
                                                 </a>
                                             </span>
                                         </div>

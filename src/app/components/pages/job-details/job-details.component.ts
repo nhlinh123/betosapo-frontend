@@ -114,6 +114,8 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
                 path: this.jobService.replace(path),
             };
         });
+        this.images.splice(0, 1);
+        unloading();
     }
 
     private initForm() {

@@ -52,19 +52,42 @@ export class PostAJobComponent implements OnInit, OnDestroy {
 
     initForm() {
         this.form = new FormGroup({
-            title: new FormControl(null, [Validators.required]),
-            description: new FormControl(null, [Validators.required]),
-            companyName: new FormControl(null, [Validators.required]),
-            location: new FormControl(null, [Validators.required]),
-            salary: new FormControl(null, [Validators.required]),
-            number: new FormControl(null, [Validators.required]),
-            position: new FormControl(null, [Validators.required]),
+            title: new FormControl(null, [
+                Validators.required,
+                Validators.max(255),
+            ]),
+            description: new FormControl(null, [
+                Validators.required,
+                Validators.max(2000),
+            ]),
+            companyName: new FormControl(null, [
+                Validators.required,
+                Validators.max(500),
+            ]),
+            location: new FormControl(null, [
+                Validators.required,
+                Validators.max(500),
+            ]),
+            salary: new FormControl(null, [
+                Validators.required,
+                Validators.max(50),
+            ]),
+            number: new FormControl(null, [
+                Validators.required,
+                Validators.pattern('^[0-9]*$'),
+                Validators.max(50),
+            ]),
+            position: new FormControl(null, [
+                Validators.required,
+                Validators.max(50),
+            ]),
             categoryId: new FormControl(null, [Validators.required]),
         });
     }
 
     initData() {
         this.categories = JSON.parse(sessionStorage.getItem('categories'));
+        unloading();
     }
 
     onFileChange(event, type: FileType) {
@@ -86,7 +109,10 @@ export class PostAJobComponent implements OnInit, OnDestroy {
             }
         } else {
             const file = event.target.files[0];
+            console.log(file);
             if (file) {
+                console.log(file);
+
                 if (!file.type?.includes('image/')) {
                     this.notifier.notify(
                         'error',
@@ -123,6 +149,8 @@ export class PostAJobComponent implements OnInit, OnDestroy {
     onDeleteFile(index: number, type: FileType) {
         if (type === 'pictures') this.myFiles.splice(index, 1);
         if (type === 'logo') this.logoFile.splice(index, 1);
+        console.log(this.logoFile);
+        console.log(this.myFiles);
     }
 
     getUserId() {

@@ -99,11 +99,11 @@ export class JobService {
 
     private transformJob(item: IJob) {
         const picturesString = this.replace(item.PicturePath);
-        const pictureArray = picturesString.split(',');
+        const pictureArray = picturesString?.split(',') ?? [];
         return {
             ...item,
             PicturePath: pictureArray,
-            firstPicture: pictureArray[0],
+            firstPicture: pictureArray[0] ?? null,
             JobType:
                 item?.JobType === 'FULLTIME' ? 'フルタイム' : 'パートタイム',
         };

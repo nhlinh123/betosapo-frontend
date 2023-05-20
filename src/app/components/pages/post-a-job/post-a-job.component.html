@@ -27,7 +27,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>タイトル</label>
-                            <input type="text" formControlName="title" class="form-control" placeholder="福都レストランではウェイターを募集しています">
+                            <input type="text" maxlength="255" formControlName="title" class="form-control" placeholder="福都レストランではウェイターを募集しています">
                             <a *ngIf="form.get('title').touched && form.get('title').invalid" class="error-text">
                                 すべての情報を入力してください
                             </a>
@@ -48,7 +48,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>会社名</label>
-                            <input type="text" formControlName="companyName" class="form-control" placeholder="福東食堂">
+                            <input type="text" maxlength="500" formControlName="companyName" class="form-control" placeholder="福東食堂">
                             <a *ngIf="form.get('companyName').touched && form.get('companyName').invalid" class="error-text">
                                 すべての情報を入力してください
                             </a>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="job-currency-area">
                                 <label>給料</label>
-                                <input type="text" formControlName="salary" class="form-control" placeholder="upto 1000$">
+                                <input type="text" maxlength="50" formControlName="salary" class="form-control" placeholder="upto 1000$">
                                 <a *ngIf="form.get('salary').touched && form.get('salary').invalid" class="error-text">
                                     すべての情報を入力してください
                                 </a>
@@ -70,8 +70,11 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>就業者数</label>
-                            <input type="number" formControlName="number" class="form-control" placeholder="10">
-                            <a *ngIf="form.get('number').touched && form.get('number').invalid" class="error-text">
+                            <input type="number" maxlength="50" formControlName="number" class="form-control" placeholder="10">
+                            <a *ngIf="form.get('number').touched && form.get('number').hasError('required')" class="error-text">
+                                すべての情報を入力してください
+                            </a>
+                            <a *ngIf="form.get('number').touched && form.get('number').hasError('pattern')" class="error-text">
                                 すべての情報を入力してください
                             </a>
                         </div>
@@ -80,7 +83,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>住所</label>
-                            <input type="text" formControlName="location" class="form-control" placeholder="210-27 Quadra, Market Street, Victoria Canada">
+                            <input type="text" maxlength="500" formControlName="location" class="form-control" placeholder="210-27 Quadra, Market Street, Victoria Canada">
                             <a *ngIf="form.get('location').touched && form.get('location').invalid" class="error-text">
                                 すべての情報を入力してください
                             </a>
@@ -131,7 +134,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label>説明</label>
-                            <textarea formControlName="description" id="your_message" rows="8" class="form-control"></textarea>
+                            <textarea maxlength="2000" formControlName="description" id="your_message" rows="8" class="form-control"></textarea>
                             <a *ngIf="form.get('description').touched && form.get('description').invalid" class="error-text">
                                 すべての情報を入力してください
                             </a>
@@ -156,7 +159,7 @@
                                 <span class="col-6 over-flow">{{file.name}}</span>
                                 <span class="col-6">
                                     <a (click)="onDeleteFile(i, 'logo')" class="cursor-pointer">
-                                        <i class="icofont-ui-remove"></i>
+                                        <i class="icofont-ui-close"></i>
                                     </a>
                                 </span>
                             </div>
@@ -192,7 +195,7 @@
                 </div>
 
                 <div class="text-left">
-                    <button type="submit" [disabled]="loading || form.invalid || !(myFiles.length > 0) || !(logoFile.length > 0)" (click)="createJob()" class="btn create-ac-btn">役職</button>
+                    <button type="submit" [disabled]="loading || form.invalid || !(logoFile.length > 0)" (click)="createJob()" class="btn create-ac-btn">役職</button>
                 </div>
             </form>
         </div>
