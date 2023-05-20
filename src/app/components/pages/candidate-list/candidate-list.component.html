@@ -24,6 +24,7 @@
                         <label>ジョブの名前</label>
                         <select nice-select [(ngModel)]="jobId" (change)="onChange($event)">
                             <option *ngFor="let job of jobs" [value]="job.Id">{{job?.Title}}</option>
+                            <option *ngIf="jobs.length < 1" disabled [value]="">データなし</option>
                         </select>
                     </div>
                 </div>
