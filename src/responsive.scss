@@ -27,7 +27,7 @@
     /*----- Home Page 1 -----*/
     /*-- Navbar --*/
     .mobile-nav nav .navbar-nav {
-        height: 350px;
+        //height: 350px;
         overflow-y: scroll;
     }
     .mobile-nav.mean-container .mean-nav ul li a.active {
@@ -236,10 +236,17 @@
     .job-item {
         padding: 15px;
 
+        img {
+            height: 5rem;
+            width: 5rem;
+            top: 20%;
+        }
+
         .job-inner {
             padding-left: 7rem;
 
             .job-inner-left {
+                min-width: 100px;
                 flex: 0 0 60%;
                 max-width: 60%;
 
@@ -1613,7 +1620,7 @@
     /*----- Home Page 1 -----*/
     /*-- Navbar --*/
     .mobile-nav nav .navbar-nav {
-        height: 350px;
+        //height: 350px;
         overflow-y: scroll;
     }
     .mobile-nav.mean-container .mean-nav ul li a.active {
@@ -1820,10 +1827,17 @@
     .job-item {
         padding: 15px;
 
+        img {
+            height: 5rem;
+            width: 5rem;
+            top: 20%;
+        }
+
         .job-inner {
             padding-left: 7rem;
 
             .job-inner-left {
+                min-width: 100px;
                 h3 {
                     margin-bottom: 5px;
                     font-size: 16px;

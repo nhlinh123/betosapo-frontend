@@ -61,7 +61,7 @@
                        placeholder="電子メイル"
                        [class]="isFormInValid('email') ? 'input-error' : ''">
                 <div *ngIf="isFormInValid('email')" class="error-text">
-                    正しい形式で入力してください
+                    正しい形式で入力してください: abc@xyz.jp
                 </div>
             </div>
 
@@ -72,7 +72,11 @@
                        placeholder="パスワード"
                        [class]="isFormInValid('password') ? 'input-error' : ''">
                 <div *ngIf="isFormInValid('password')" class="error-text">
-                    正しい形式で入力してください
+                    正しい形式を入力してください:
+                    <br>
+                    - 少なくとも 1 つの大文字または小文字を含めます。
+                    <br>
+                    - 6文字から30文字まで。
                 </div>
             </div>
         </form>

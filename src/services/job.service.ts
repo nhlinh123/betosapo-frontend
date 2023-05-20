@@ -71,22 +71,22 @@ export class JobService {
         return this.http.get(`${this.apiUrl}/${this.path}/getAllJobs`);
     }
 
-    getAllApplied(jobId): Observable<any> {
+    getAllApplied(jobId, jobType, categoryId): Observable<any> {
         return this.http
             .post(`${this.apiUrl}/${this.path}/getAllApplied`, {
                 jobId,
+                jobType,
+                categoryId,
             })
             .pipe(
                 map((rs: BaseResponse<any[]>) => {
                     return {
                         code: rs.code,
                         data: rs.data.map((item) => {
-                            console.log(item?.Path);
                             const path = item?.Path.replace(
                                 environment.path,
                                 this.apiUrl + '/'
                             ).replace(/\\/g, '/');
-                            console.log(path);
                             return {
                                 ...item,
                                 Path: path,

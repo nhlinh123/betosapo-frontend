@@ -18,12 +18,35 @@
 <section class="profile-area profile-area-two pt-100">
     <div class="container">
         <div class="row">
-            <div class="form-group">
-                <div class="col-lg-3 job-select">
-                    <label>ジョブの名前</label>
-                    <select nice-select [(ngModel)]="jobId" (change)="onChange($event)">
-                        <option *ngFor="let job of jobs" [value]="job.Id">{{job?.Title}}</option>
-                    </select>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <div class="job-select">
+                        <label>ジョブの名前</label>
+                        <select nice-select [(ngModel)]="jobId" (change)="onChange($event)">
+                            <option *ngFor="let job of jobs" [value]="job.Id">{{job?.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <div class="job-select">
+                        <label>仕事の種類</label>
+                        <select nice-select [(ngModel)]="jobType" (change)="onChange($event)">
+                            <option value="FULLTIME">フルタイム</option>
+                            <option value="PARTTIME">パートタイム</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <div class="job-select">
+                        <label>カテゴリー</label>
+                        <select nice-select [(ngModel)]="categoryId" (change)="onChange($event)">
+                            <option *ngFor="let category of categories" [value]="category.Id">{{category?.Name}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,6 +60,11 @@
                             <h3 class="over-flow">{{user?.FullName}}</h3>
                             <span class="over-flow">{{user?.Email}}</span>
                             <span class="over-flow">{{user?.PhoneNumber}}</span>
+                            <span class="over-flow">{{user?.CompanyName}}</span>
+                            <span class="over-flow">{{user?.CategoryName}}</span>
+                            <span class="over-flow">{{user?.Position}}</span>
+                            <span class="over-flow">{{user?.JobType === 'FULLTIME' ? 'フルタイム' : 'パートタイム'}}</span>
+                            <span class="over-flow">{{user?.CreatedDate | date: 'dd/MM/YYYY HH:mm'}}</span>
                             <a class="over-flow" style="cursor: pointer" (click)="downloadCV(user.Path)">履歴書をダウンロード<i class="icofont-swoosh-right"></i></a>
                             <!--                            <div class="profile-heart">-->
                             <!--                                <a routerLink="/candidate-details"><i class="icofont-heart-alt"></i></a>-->

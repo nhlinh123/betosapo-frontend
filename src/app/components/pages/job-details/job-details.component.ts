@@ -28,6 +28,7 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
     loading = false;
     subscribe: Subject<any> = new Subject<any>();
     @ViewChild('fileElement', { static: true }) fileElement: ElementRef;
+    allowType = '.pdf, .docx, .png, .jpg, .jpeg';
 
     constructor(
         private router: Router,
@@ -50,7 +51,19 @@ export class JobDetailsComponent implements OnInit, OnDestroy {
     }
 
     uploadCV($event) {
-        this.files = [Object.values($event.target.files)[0]];
+        const file = $event.target.files[0];
+        const allowArray = this.allowType.split(', ');
+        if (file) {
+            const fileType = file.name.split('.');
+            if (!allowArray.includes('.' + fileType[1])) {
+                this.notifier.notify(
+                    'error',
+                    '.pdf、.docx、.png、.jpg、.jpeg 内のファイルを選択します'
+                );
+                return;
+            }
+            this.files = [file];
+        }
     }
 
     apply() {

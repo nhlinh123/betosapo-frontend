@@ -44,6 +44,9 @@ export class LoginComponent implements OnInit {
     }
 
     isFormInValid(controlName: string) {
-        return this.form.invalid && this.form.get(controlName).invalid;
+        return (
+            this.form.get(controlName).touched &&
+            this.form.get(controlName).invalid
+        );
     }
 }

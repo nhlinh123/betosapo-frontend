@@ -68,13 +68,55 @@ export class PostAJobComponent implements OnInit, OnDestroy {
     }
 
     onFileChange(event, type: FileType) {
+        console.log(event);
         if (type === 'pictures') {
             if (this.myFiles.length === 10) return;
             for (const file of event.target.files) {
-                this.myFiles.push(file);
+                if (file) {
+                    console.log(file);
+                    if (file.type?.includes('image/')) {
+                        this.myFiles.push(file);
+                    } else {
+                        this.notifier.notify(
+                            'error',
+                            '画像の長さ：幅の比率は 1:1 である必要があります。'
+                        );
+                    }
+                }
             }
         } else {
-            this.logoFile = [Object.values(event.target.files)[0]];
+            const file = event.target.files[0];
+            if (file) {
+                if (!file.type?.includes('image/')) {
+                    this.notifier.notify(
+                        'error',
+                        '.jpg、jpeg、.png 形式のファイルを選択してください。'
+                    );
+                    return;
+                }
+
+                console.log(file);
+                const reader = new FileReader();
+                reader.onload = (e: any) => {
+                    const image = new Image();
+                    image.src = e.target.result;
+
+                    image.onload = () => {
+                        const aspectRatio = image.width / image.height;
+                        const ratio = Math.round(aspectRatio * 10) / 10;
+                        console.log('Aspect Ratio:', ratio);
+                        if (ratio !== 1) {
+                            this.notifier.notify(
+                                'error',
+                                '画像の長さ：幅の比率は 1:1 である必要があります。'
+                            );
+                        } else {
+                            this.logoFile = [file];
+                        }
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
         }
     }
 
@@ -90,6 +132,7 @@ export class PostAJobComponent implements OnInit, OnDestroy {
 
     createJob() {
         this.loading = true;
+        const timestamp = new Date().getTime();
         const data = this.form.getRawValue();
         const body = new FormData();
         for (const key of Object.keys(data)) {
@@ -98,11 +141,17 @@ export class PostAJobComponent implements OnInit, OnDestroy {
         body.append('status', 'OPEN');
         body.append('userId', this.getUserId());
         body.append('jobType', this.partTime ?? this.fullTime);
+        let index = 0;
         for (const file of this.logoFile) {
-            body.append('files', file);
+            const fileName = `${timestamp}_${index}_${file.name}`;
+            body.append('files', file, fileName);
+            index++;
         }
+        index = 0;
         for (const file of this.myFiles) {
-            body.append('files', file);
+            const fileName = `${timestamp}_${index}_${file.name}`;
+            body.append('files', file, fileName);
+            index++;
         }
         loading();
         this.jobService

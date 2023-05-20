@@ -69,7 +69,7 @@
                             <input #fileElement
                                    hidden
                                    type="file"
-                                   [accept]="'.pdf, .docx, .png, .jpg, .jpeg'"
+                                   [accept]="allowType"
                                    class="form-control"
                                    style="padding-top: 11px;"
                                    (change)="uploadCV($event)">

@@ -16,7 +16,10 @@ export class CandidateListComponent implements OnInit {
     subscribe: Subject<any> = new Subject<any>();
     jobs: any[] = [];
     applieds: any[] = [];
-    jobId: number;
+    jobId: number = 0;
+    jobType: string = '';
+    categoryId: number = 0;
+    categories: string[] = [];
     constructor(
         private router: Router,
         private jobService: JobService,
@@ -31,7 +34,8 @@ export class CandidateListComponent implements OnInit {
     initData(): void {
         loading();
         this.initJob();
-        this.getApplied(0);
+        this.initCategories();
+        this.getApplied(this.jobId, this.jobType, this.categoryId);
     }
 
     initJob() {
@@ -49,14 +53,17 @@ export class CandidateListComponent implements OnInit {
             .subscribe();
     }
 
-    getApplied(jobId?) {
+    initCategories() {
+        this.categories = JSON.parse(sessionStorage.getItem('categories'));
+    }
+
+    getApplied(jobId?, jobType?, categoryId?) {
         this.jobService
-            .getAllApplied(jobId)
+            .getAllApplied(jobId, jobType, categoryId)
             .pipe(
                 tap((rs: BaseResponse<any[]>) => {
                     if (rs) {
                         this.applieds = rs.data;
-                        console.log(this.applieds);
                     }
                 }),
                 finalize(() => unloading()),
@@ -67,7 +74,11 @@ export class CandidateListComponent implements OnInit {
 
     onChange($event) {
         if ($event) {
-            this.getApplied(this.jobId);
+            this.getApplied(
+                this.jobId ?? 0,
+                this.jobType ?? '',
+                this.categoryId ?? 0
+            );
         }
     }
 
