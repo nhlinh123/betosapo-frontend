@@ -50,6 +50,14 @@ export class LoginComponent implements OnInit {
                         'error',
                         'メールアドレスが存在しません。もう一度お試しください。'
                     );
+                } else if (
+                    err?.error?.message.includes('Incorrect password') ||
+                    err?.error?.message.includes('must be a valid email')
+                ) {
+                    this.notifier.notify(
+                        'error',
+                        'メールアドレスまたはパスワードが間違っています。もう一度お試しください'
+                    );
                 } else {
                     this.notifier.notify(
                         'error',
