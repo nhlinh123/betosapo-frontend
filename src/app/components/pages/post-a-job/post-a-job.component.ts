@@ -181,11 +181,20 @@ export class PostAJobComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     if (error) {
-                        console.error(error);
-                        this.notifier.notify(
-                            'error',
-                            'エラーが発生しました。後でもう一度お試しください。'
-                        );
+                        if (
+                            error.error.message === 'File too large' ||
+                            error.message === 'File too large'
+                        ) {
+                            this.notifier.notify(
+                                'error',
+                                'ファイルは 5MB を超えることはできません。もう一度お試しください。'
+                            );
+                        } else {
+                            this.notifier.notify(
+                                'error',
+                                'エラーが発生しました。後でもう一度お試しください。'
+                            );
+                        }
                         this.loading = false;
                     }
                 },
