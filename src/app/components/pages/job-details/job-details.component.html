@@ -24,7 +24,7 @@
 
                     <div class="job-description mt-3 mb-3">
                         <h2>仕事内容</h2>
-                        <p style="line-break: auto;white-space: break-spaces;">{{job?.Description}}</p>
+                        <p class="break-line">{{job?.Description}}</p>
                     </div>
 
                     <div class="row" *ngIf="images.length > 0">
@@ -48,8 +48,8 @@
                         <form [formGroup]="form">
                             <h3>基本情報</h3>
 
-                            <div class="d-flex">
-                                <div>
+                            <div class="row">
+                                <div class="col-6">
                                     <div class="create-information-btn">
                                         <a (click)="browser()">履歴書をアップロードする</a>
                                     </div>
@@ -57,7 +57,7 @@
                                 <div class="col-6" *ngIf="files.length > 0">
                                     <ng-container *ngFor="let file of files; let i = index">
                                         <div class="row">
-                                            <span class="col-6 over-flow" style="min-width: 400px;margin-top:10px">{{file.name}}</span>
+                                            <span class="col-6 over-flow file-name">{{file.name}}</span>
                                             <span class="col-6">
                                                 <a *ngIf="i" (click)="onDeleteFile(i)" class="cursor-pointer">
                                                     <i class="icofont-ui-close"></i>

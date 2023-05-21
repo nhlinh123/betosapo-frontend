@@ -4031,4 +4031,9 @@ footer {
     text-overflow: ellipsis;
 }
 
+.break-line {
+    line-break: auto;
+    white-space: break-spaces;
+}
+
 /*----- End Back To Top -----*/
