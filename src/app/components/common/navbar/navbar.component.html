@@ -4,7 +4,9 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a routerLink="/" (click)="onResetData()" class="navbar-brand"><img src="assets/img/logo.png" alt="Logo"></a>
-
+                <button (click)="menu()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -15,8 +17,8 @@
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle">ジョブ<i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/job-list" (click)="onResetData()"  class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">作業リスト</a></li>
-                                <li class="nav-item"><a routerLink="/post-a-job" (click)="onResetData()" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}" *ngIf="isLogin$ | async">求人を投稿する</a></li>
+                                <li class="nav-item"><a routerLink="/job-list" (click)="onResetData()"  class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">作業リスト</a></li>
+                                <li class="nav-item"><a routerLink="/post-a-job" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isLogin$ | async">求人を投稿する</a></li>
                             </ul>
                         </li>
 
@@ -24,57 +26,26 @@
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle">候補者<i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/candidate-list" (click)="onResetData()" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">候補者リスト</a></li>
+                                <li class="nav-item"><a routerLink="/candidate-list" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">候補者リスト</a></li>
                             </ul>
                         </li>
-
-<!--                        <li class="nav-item">-->
-<!--                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Pages <i class="icofont-simple-down"></i></a>-->
-
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li class="nav-item"><a routerLink="/company-list" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Company List</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/company-details" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Company Details</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/login" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Login Page</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/create-account" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Create Account Page</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/profile" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Profile</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/single-profile" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Single Profile</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/404" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">404 Error</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/faq" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">FAQ</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/terms-and-conditions" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Terms and Conditions</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/privacy-policy" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Privacy Policy</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-
-<!--                        <li class="nav-item">-->
-<!--                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Blogs <i class="icofont-simple-down"></i></a>-->
-
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li class="nav-item"><a routerLink="/blog" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Blog</a></li>-->
-
-<!--                                <li class="nav-item"><a routerLink="/blog-details" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Blog Details</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-
-<!--                        <li class="nav-item"><a routerLink="/contact" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Contact Us</a></li>-->
                     </ul>
 
                     <div class="common-btn">
                         <a class="login-btn" routerLink="/login" *ngIf="!(isLogin$ | async)"><i class="icofont-login"></i>雇用者</a>
                         <a class="sign-up-btn" style="cursor: pointer" (click)="logout()" *ngIf="isLogin$ | async"><i class="icofont-logout"></i>ログアウト</a>
-<!--                        <a class="sign-up-btn" routerLink="/create-account"><i class="icofont-user-alt-4"></i> Sign Up</a>-->
                     </div>
                 </div>
             </nav>
         </div>
     </div>
 
+     <div class="mobile-nav" *ngIf="menuAppear">
+         <a routerLink="/" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ホームページ</a>
+         <a routerLink="/job-list" (click)="onResetData()"  class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">作業リスト</a>
+         <a routerLink="/post-a-job" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isLogin$ | async">求人を投稿する</a>
+         <a routerLink="/candidate-list" (click)="onResetData()" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">候補者リスト</a>
+         <a class="login-btn" routerLink="/login" *ngIf="!(isLogin$ | async)" (click)="onResetData()"><i class="icofont-login"></i>雇用者</a>
+         <a class="sign-up-btn" style="cursor: pointer" (click)="logout()" *ngIf="isLogin$ | async"><i class="icofont-logout"></i>ログアウト</a>
+     </div>
 </div>

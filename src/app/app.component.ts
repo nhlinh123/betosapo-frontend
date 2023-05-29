@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import {
     NavigationCancel,
     NavigationEnd,
@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
     recallJsFuntions() {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationStart) {
+                console.log('1');
                 $('.loader').fadeIn('slow');
             }
         });

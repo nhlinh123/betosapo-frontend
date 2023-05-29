@@ -146,10 +146,14 @@ a.meanmenu-reveal {
 	display: none !important;
 }
 .mobile-nav {
-    display: none;
+    position: absolute;
+    top: 4.4rem;
+    width: 100%;
+    padding: 0 0.8rem 0.8rem 0.8rem;
+    background: #f9f9f9;
 }
-.mobile-nav.mean-container .mean-nav ul li a.active {
-    color: #FF2D55;
+.mobile-nav a {
+    padding-bottom: 10px;
 }
 .main-nav {
     background: #000;
@@ -272,7 +276,7 @@ a.meanmenu-reveal {
 .main-nav nav .navbar-nav .nav-item .dropdown-menu li:hover a {
     color: #FF2D55;
 }
-.main-nav nav .navbar-nav .nav-item:hover ul {
+.main-nav nav .navbar-nav .nav-item:hover ul, .main-nav nav .navbar-nav .nav-item:active ul {
     opacity: 1;
     visibility: visible;
     top: 100%;
@@ -280,33 +284,4 @@ a.meanmenu-reveal {
 .main-nav nav .navbar-nav .nav-item:last-child .dropdown-menu {
     left: auto;
     right: auto;
-}
-
-/* Responsive Style */
-@media only screen and (max-width: 991px) {
-    .mobile-nav {
-        display: block;
-        position: relative;
-    }
-    .mobile-nav .logo {
-		text-decoration: none;
-        position: absolute;
-        top: 11px;
-        z-index: 999;
-        left: 15px;
-        color: #fff;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 20px;
-    }
-    .mean-container .mean-bar {
-        background-color: #000;
-        padding: 0;
-    }
-    .mean-container a.meanmenu-reveal {
-        padding: 15px 15px 0 0;
-    }
-    .mobile-nav nav .navbar-nav .nav-item a i {
-        display: none;
-    }
 }

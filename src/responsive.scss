@@ -7,15 +7,15 @@
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
-    .navbar-brand {
-        display: none;
-    }
     .main-nav nav .navbar-nav .nav-item a {
         font-size: 13px !important;
     }
     .navbar-expand-md .navbar-collapse {
         display: flex!important;
         flex-basis: auto;
+    }
+    #navbarSupportedContent {
+        display: none !important;
     }
 }
 
@@ -3210,4 +3210,13 @@
         padding: 40px 0;
     }
 
+}
+
+@media only screen and (max-width: 992px) {
+    .navbar-brand {
+        display: none;
+    }
+    .navbar-toggler {
+        display: block;
+    }
 }
